@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include "Anemometer.h"
 
+#define SKALIERUNGS_FAKTOR 2.4
+
 const int m_time = 5;      //Measurement time in Seconds
 int wind_ct = 0;
 float wind = 0.0;
@@ -23,7 +25,7 @@ float getMeassurementWind()
 	attachInterrupt(1, countWind, RISING);
 	delay(1000 * m_time);
 	detachInterrupt(1);
-	wind = (float)wind_ct / (float)m_time * 2.4;
+	wind = (float)wind_ct / (float)m_time * SKALIERUNGS_FAKTOR;
 	
 	// Conversion in m/s
 	wind = wind/3.6;
