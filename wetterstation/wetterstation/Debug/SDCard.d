@@ -43,7 +43,7 @@ SDCard.d SDCard.o: .././SDCard.cpp \
  ..\\..\ArduinoCore\include\libraries\SD/utility/FatStructs.h \
  ..\\..\ArduinoCore\include\core/Print.h \
  ..\\..\ArduinoCore\include\libraries\SD/utility/SdFatUtil.h \
- .././SDCard.h
+ ..\\..\ArduinoCore\include\libraries\SPI/SPI.h .././SDCard.h
 
 ..\\..\ArduinoCore\include\libraries\SD/SD.h:
 
@@ -132,5 +132,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\core/Print.h:
 
 ..\\..\ArduinoCore\include\libraries\SD/utility/SdFatUtil.h:
+
+..\\..\ArduinoCore\include\libraries\SPI/SPI.h:
 
 .././SDCard.h:
