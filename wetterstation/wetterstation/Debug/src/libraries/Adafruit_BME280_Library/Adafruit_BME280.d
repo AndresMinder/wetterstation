@@ -1,4 +1,6 @@
-Sketch.d Sketch.o: .././Sketch.cpp \
+src/libraries/Adafruit_BME280_Library/Adafruit_BME280.d \
+ src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o: \
+ ../src/libraries/Adafruit_BME280_Library/Adafruit_BME280.cpp \
  ..\\..\ArduinoCore\include\core/Arduino.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
@@ -34,8 +36,13 @@ Sketch.d Sketch.o: .././Sketch.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  ..\\..\ArduinoCore\include\core/Arduino.h \
- ..\\..\ArduinoCore\include\variants\mega/pins_arduino.h .././SDCard.h \
- .././Anemometer.h .././CLI.h .././Temp_Press_Humid.h .././myRTC.h
+ ..\\..\ArduinoCore\include\variants\mega/pins_arduino.h \
+ ..\include\libraries\Wire\src/Wire.h \
+ ..\\..\ArduinoCore\include\core/Stream.h \
+ ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
+ ..\include\libraries\Adafruit_BME280_Library/Adafruit_BME280.h \
+ ..\include\libraries\Adafruit_Unified_Sensor/Adafruit_Sensor.h \
+ ..\\..\ArduinoCore\include\core/Print.h
 
 ..\\..\ArduinoCore\include\core/Arduino.h:
 
@@ -109,12 +116,14 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ..\\..\ArduinoCore\include\variants\mega/pins_arduino.h:
 
-.././SDCard.h:
+..\include\libraries\Wire\src/Wire.h:
 
-.././Anemometer.h:
+..\\..\ArduinoCore\include\core/Stream.h:
 
-.././CLI.h:
+..\\..\ArduinoCore\include\libraries\SPI/SPI.h:
 
-.././Temp_Press_Humid.h:
+..\include\libraries\Adafruit_BME280_Library/Adafruit_BME280.h:
 
-.././myRTC.h:
+..\include\libraries\Adafruit_Unified_Sensor/Adafruit_Sensor.h:
+
+..\\..\ArduinoCore\include\core/Print.h:
