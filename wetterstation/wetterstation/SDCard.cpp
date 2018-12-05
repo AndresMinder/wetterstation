@@ -1,19 +1,27 @@
-// Here are all functions declared, which are needed for interacting with the SD card.
-
 #include <SD.h>
 #include <SPI.h>
 #include <stdlib.h>
-
 #include "SDCard.h"
 
-const int chipSelect = 53;
-
+// const int chipSelect = 53;
 File myFile;
 Sd2Card card;
 SdVolume volume;
 SdFile root;
 
-void getCardInformations()
+// constructor
+SDCard::SDCard(unsigned int pinNumber)
+{	
+	chipSelect = pinNumber;
+} //test
+
+// destructor
+SDCard::~SDCard()
+{
+	
+} //~test
+
+void SDCard::getCardInformations()
 {
 	if (!card.init(SPI_HALF_SPEED, chipSelect)) {
 		Serial.println("no card available!");
@@ -67,65 +75,67 @@ void getCardInformations()
 
 	// list all files in the card with date and size
 	root.ls(LS_R | LS_DATE | LS_SIZE);
-}
+} // getCardInformations
 
-void readFileSDCard(String filename)
+void SDCard::writeFileSDCard(double value2save, String filename)
 {
 	pinMode(53, OUTPUT);
-	
+
+	if (!SD.begin(53))
+	{
+		Serial.println("initialization failed!");
+		return;
+	}
+	// open file
+	myFile = SD.open(filename, FILE_WRITE);
+
+	// if the file opened okay, write to it:
+	if (myFile)
+	{
+		myFile.println(String(value2save));
+		// close the file:
+		myFile.close();
+	} 
+	else
+	{
+		// if the file didn't open, print an error:
+		Serial.println("Error opening: " + filename);
+	}
+} // writeFileSDCard
+
+void SDCard::readFileSDCard(String filename)
+{
+	pinMode(53, OUTPUT);
+
 	if (!SD.begin(53)) {
 		Serial.println("Initialization failed!");
 		return;
 	}
-	// open the file for reading:
+	//open the file for reading:
 	myFile = SD.open(filename);
 	if (myFile) {
 		Serial.println("Filename: " + filename);
-		
+
 		// read from the file until there's nothing else in it:
-		while (myFile.available()) {
+		while (myFile.available()) {
 			Serial.write(myFile.read());
 		}
-		
 		// close the file:
 		myFile.close();
 		} else {
 		// if the file didn't open, print an error:
 		Serial.println("Error opening" + filename);
 	}
-}
+} // readFileSDCard
 
-void writeFileSDCard(double value2save, String filename)
+void SDCard::deleteFileSDCard(String filename)
 {
 	pinMode(53, OUTPUT);
-	
-	if (!SD.begin(53)) {
-		Serial.println("initialization failed!");
-		return;
-	}
-	// open file
-	myFile = SD.open(filename, FILE_WRITE);
-	
-	// if the file opened okay, write to it:
-	if (myFile) {
-		myFile.println(String(value2save));
-		// close the file:
-		myFile.close();
-		} else {
-		// if the file didn't open, print an error:
-		Serial.println("Error opening: " + filename);
-	}
-}
 
-void deleteFileSDCard(String filename)
-{
-	pinMode(53, OUTPUT);
-	
 	if (!SD.begin(53)) {
 		Serial.println("Initialization failed!");
 		return;
-	}
-	
+	}
 	// delete unwanted file if it exists
 	if (SD.exists(filename))
 	{
@@ -135,4 +145,4 @@ void deleteFileSDCard(String filename)
 	{
 		Serial.println("File doesn't exist!");
 	}
-}
+} // deleteFileSDCard

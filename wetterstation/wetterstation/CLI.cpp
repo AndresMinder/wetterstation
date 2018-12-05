@@ -61,9 +61,9 @@ void commandLineInterface()
 			buffer = read_string_cli();
 			if (buffer.equals(show_sdCardInfo))
 			{
-				getCardInformations();
+				//getCardInformations();
 				Serial.println("");
-				readFileSDCard("data.txt");
+				//readFileSDCard("data.txt");
 				continue;
 			}
 			else if (buffer.equals(command_help))
