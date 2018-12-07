@@ -58,6 +58,8 @@ C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCo
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o (main)
 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
                               src/libraries/SoftwareSerial/src/SoftwareSerial.o (_ZN5Print5writeEPKhj)
+C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                              Rj11Sensors.o (attachInterrupt)
 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
                               src/libraries/RTCLib/RTClib.o (millis)
 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
@@ -267,22 +269,12 @@ Discarded input sections
                 0x00000000       0xac RealTimeClock.o
  .text._ZN13RealTimeClock12getTimeStampEv
                 0x00000000       0x4c RealTimeClock.o
+ .group         0x00000000        0x8 Rj11Sensors.o
  .text          0x00000000        0x0 Rj11Sensors.o
  .data          0x00000000        0x0 Rj11Sensors.o
  .bss           0x00000000        0x0 Rj11Sensors.o
- .text._ZN11Rj11SensorsC2Ev
-                0x00000000        0x2 Rj11Sensors.o
- .text._ZN11Rj11SensorsD2Ev
-                0x00000000        0x2 Rj11Sensors.o
- .debug_info    0x00000000      0x173 Rj11Sensors.o
- .debug_abbrev  0x00000000       0xf0 Rj11Sensors.o
- .debug_aranges
-                0x00000000       0x28 Rj11Sensors.o
- .debug_ranges  0x00000000       0x18 Rj11Sensors.o
- .debug_line    0x00000000       0x61 Rj11Sensors.o
- .debug_str     0x00000000      0x231 Rj11Sensors.o
- .comment       0x00000000       0x31 Rj11Sensors.o
- .debug_frame   0x00000000       0x34 Rj11Sensors.o
+ .text._ZN11Rj11Sensors16getNumberOfEdgesEv
+                0x00000000        0xc Rj11Sensors.o
  .group         0x00000000        0x8 SdcardBreakout.o
  .text          0x00000000        0x0 SdcardBreakout.o
  .data          0x00000000        0x0 SdcardBreakout.o
@@ -705,6 +697,13 @@ Discarded input sections
                 0x00000000       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
  .rodata._ZTV5Print
                 0x00000000        0xc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text          0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .data          0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .bss           0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .text.detachInterrupt
+                0x00000000       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .progmem.gcc_sw_table.detachInterrupt
+                0x00000000        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
  .text          0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
  .data          0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
  .bss           0x00000000        0x0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
@@ -1893,7 +1892,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x3c68
+.text           0x00000000     0x40ae
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -1902,622 +1901,661 @@ END GROUP
  *(.progmem.gcc*)
  .progmem.gcc_sw_table._ZN8DateTimeC2EPK19__FlashStringHelperS2_
                 0x000000e4       0x26 src/libraries/RTCLib/RTClib.o
+ .progmem.gcc_sw_table.attachInterrupt
+                0x0000010a        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
  .progmem.gcc_sw_table.turnOffPWM
-                0x0000010a       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x0000012e                . = ALIGN (0x2)
-                0x0000012e                __trampolines_start = .
+                0x00000118       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x0000013c                . = ALIGN (0x2)
+                0x0000013c                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x0000012e        0x0 linker stubs
+ .trampolines   0x0000013c        0x0 linker stubs
  *(.trampolines*)
-                0x0000012e                __trampolines_end = .
+                0x0000013c                __trampolines_end = .
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
  *(.progmem*)
  .progmem.data._ZZN13RealTimeClock7initRTCEvE3__c
-                0x0000012e        0xc RealTimeClock.o
+                0x0000013c        0xc RealTimeClock.o
  .progmem.data._ZZN13RealTimeClock7initRTCEvE3__c_0
-                0x0000013a        0x9 RealTimeClock.o
+                0x00000148        0x9 RealTimeClock.o
  .progmem.data.digital_pin_to_timer_PGM
-                0x00000143       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00000143                digital_pin_to_timer_PGM
+                0x00000151       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000151                digital_pin_to_timer_PGM
  .progmem.data.digital_pin_to_bit_mask_PGM
-                0x00000189       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00000189                digital_pin_to_bit_mask_PGM
+                0x00000197       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000197                digital_pin_to_bit_mask_PGM
  .progmem.data.digital_pin_to_port_PGM
-                0x000001cf       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x000001cf                digital_pin_to_port_PGM
+                0x000001dd       0x46 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x000001dd                digital_pin_to_port_PGM
  .progmem.data.port_to_input_PGM
-                0x00000215       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00000215                port_to_input_PGM
+                0x00000223       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000223                port_to_input_PGM
  .progmem.data.port_to_output_PGM
-                0x0000022f       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x0000022f                port_to_output_PGM
+                0x0000023d       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x0000023d                port_to_output_PGM
  .progmem.data.port_to_mode_PGM
-                0x00000249       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00000249                port_to_mode_PGM
-                0x00000264                . = ALIGN (0x2)
- *fill*         0x00000263        0x1 
+                0x00000257       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000257                port_to_mode_PGM
+                0x00000272                . = ALIGN (0x2)
+ *fill*         0x00000271        0x1 
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000264                __ctors_start = .
+                0x00000272                __ctors_start = .
  *(.ctors)
- .ctors         0x00000264        0x2 main.o
- .ctors         0x00000266        0x2 SdcardBreakout.o
- .ctors         0x00000268        0x2 src/libraries/Wire/src/Wire.o
- .ctors         0x0000026a        0x2 TempHumidPressSensor.o
- .ctors         0x0000026c        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .ctors         0x0000026e        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .ctors         0x00000270        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00000272                __ctors_end = .
-                0x00000272                __dtors_start = .
+ .ctors         0x00000272        0x2 main.o
+ .ctors         0x00000274        0x2 SdcardBreakout.o
+ .ctors         0x00000276        0x2 src/libraries/Wire/src/Wire.o
+ .ctors         0x00000278        0x2 TempHumidPressSensor.o
+ .ctors         0x0000027a        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .ctors         0x0000027c        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .ctors         0x0000027e        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00000280                __ctors_end = .
+                0x00000280                __dtors_start = .
  *(.dtors)
- .dtors         0x00000272        0x2 main.o
-                0x00000274                __dtors_end = .
+ .dtors         0x00000280        0x2 main.o
+                0x00000282                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000274        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
-                0x00000274                __init
+ .init0         0x00000282        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
+                0x00000282                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000274       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
+ .init2         0x00000282       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000284       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_copy_data.o)
-                0x00000284                __do_copy_data
- .init4         0x0000029e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_clear_bss.o)
-                0x0000029e                __do_clear_bss
+ .init4         0x00000292       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_copy_data.o)
+                0x00000292                __do_copy_data
+ .init4         0x000002ac       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_clear_bss.o)
+                0x000002ac                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
  *(.init6)
- .init6         0x000002ae       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_ctors.o)
-                0x000002ae                __do_global_ctors
+ .init6         0x000002bc       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_ctors.o)
+                0x000002bc                __do_global_ctors
  *(.init6)
  *(.init7)
  *(.init7)
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000002ce        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
+ .init9         0x000002dc        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
  *(.init9)
  *(.text)
- .text          0x000002d6        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
-                0x000002d6                __vector_38
-                0x000002d6                __vector_22
-                0x000002d6                __vector_28
-                0x000002d6                __vector_1
-                0x000002d6                __vector_32
-                0x000002d6                __vector_34
-                0x000002d6                __vector_24
-                0x000002d6                __vector_12
-                0x000002d6                __vector_55
-                0x000002d6                __vector_46
-                0x000002d6                __bad_interrupt
-                0x000002d6                __vector_6
-                0x000002d6                __vector_31
-                0x000002d6                __vector_35
-                0x000002d6                __vector_3
-                0x000002d6                __vector_30
-                0x000002d6                __vector_45
-                0x000002d6                __vector_54
-                0x000002d6                __vector_13
-                0x000002d6                __vector_17
-                0x000002d6                __vector_19
-                0x000002d6                __vector_56
-                0x000002d6                __vector_7
-                0x000002d6                __vector_49
-                0x000002d6                __vector_41
-                0x000002d6                __vector_43
-                0x000002d6                __vector_27
-                0x000002d6                __vector_5
-                0x000002d6                __vector_33
-                0x000002d6                __vector_47
-                0x000002d6                __vector_52
-                0x000002d6                __vector_37
-                0x000002d6                __vector_4
-                0x000002d6                __vector_44
-                0x000002d6                __vector_51
-                0x000002d6                __vector_2
-                0x000002d6                __vector_21
-                0x000002d6                __vector_15
-                0x000002d6                __vector_36
-                0x000002d6                __vector_29
-                0x000002d6                __vector_40
-                0x000002d6                __vector_8
-                0x000002d6                __vector_48
-                0x000002d6                __vector_14
-                0x000002d6                __vector_53
-                0x000002d6                __vector_50
-                0x000002d6                __vector_16
-                0x000002d6                __vector_18
-                0x000002d6                __vector_20
-                0x000002d6                __vector_42
-                0x000002d8                . = ALIGN (0x2)
+ .text          0x000002e4        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
+                0x000002e4                __vector_38
+                0x000002e4                __vector_22
+                0x000002e4                __vector_28
+                0x000002e4                __vector_32
+                0x000002e4                __vector_34
+                0x000002e4                __vector_24
+                0x000002e4                __vector_12
+                0x000002e4                __vector_55
+                0x000002e4                __vector_46
+                0x000002e4                __bad_interrupt
+                0x000002e4                __vector_31
+                0x000002e4                __vector_35
+                0x000002e4                __vector_30
+                0x000002e4                __vector_45
+                0x000002e4                __vector_54
+                0x000002e4                __vector_13
+                0x000002e4                __vector_17
+                0x000002e4                __vector_19
+                0x000002e4                __vector_56
+                0x000002e4                __vector_49
+                0x000002e4                __vector_41
+                0x000002e4                __vector_43
+                0x000002e4                __vector_27
+                0x000002e4                __vector_33
+                0x000002e4                __vector_47
+                0x000002e4                __vector_52
+                0x000002e4                __vector_37
+                0x000002e4                __vector_44
+                0x000002e4                __vector_51
+                0x000002e4                __vector_21
+                0x000002e4                __vector_15
+                0x000002e4                __vector_36
+                0x000002e4                __vector_29
+                0x000002e4                __vector_40
+                0x000002e4                __vector_48
+                0x000002e4                __vector_14
+                0x000002e4                __vector_53
+                0x000002e4                __vector_50
+                0x000002e4                __vector_16
+                0x000002e4                __vector_18
+                0x000002e4                __vector_20
+                0x000002e4                __vector_42
+                0x000002e6                . = ALIGN (0x2)
  *(.text.*)
- .text.setup    0x000002d8       0x26 main.o
-                0x000002d8                setup
- .text.loop     0x000002fe        0x2 main.o
-                0x000002fe                loop
+ .text.setup    0x000002e6       0x2e main.o
+                0x000002e6                setup
+ .text.loop     0x00000314        0x2 main.o
+                0x00000314                loop
  .text.startup._GLOBAL__sub_I_sd
-                0x00000300       0x2c main.o
+                0x00000316       0x38 main.o
  .text.exit._GLOBAL__sub_D_sd
-                0x0000032c       0x24 main.o
+                0x0000034e       0x30 main.o
  .text._ZN13RealTimeClockC2Ev
-                0x00000350        0x8 RealTimeClock.o
-                0x00000350                _ZN13RealTimeClockC2Ev
-                0x00000350                _ZN13RealTimeClockC1Ev
+                0x0000037e        0x8 RealTimeClock.o
+                0x0000037e                _ZN13RealTimeClockC2Ev
+                0x0000037e                _ZN13RealTimeClockC1Ev
  .text._ZN13RealTimeClockD2Ev
-                0x00000358        0x4 RealTimeClock.o
-                0x00000358                _ZN13RealTimeClockD2Ev
-                0x00000358                _ZN13RealTimeClockD1Ev
+                0x00000386        0x4 RealTimeClock.o
+                0x00000386                _ZN13RealTimeClockD2Ev
+                0x00000386                _ZN13RealTimeClockD1Ev
  .text._ZN13RealTimeClock7initRTCEv
-                0x0000035c       0x6c RealTimeClock.o
-                0x0000035c                _ZN13RealTimeClock7initRTCEv
+                0x0000038a       0x6c RealTimeClock.o
+                0x0000038a                _ZN13RealTimeClock7initRTCEv
+ .text._ZN11Rj11SensorsC2Ev
+                0x000003f6        0xc Rj11Sensors.o
+                0x000003f6                _ZN11Rj11SensorsC2Ev
+                0x000003f6                _ZN11Rj11SensorsC1Ev
+ .text._ZN11Rj11SensorsD2Ev
+                0x00000402        0x2 Rj11Sensors.o
+                0x00000402                _ZN11Rj11SensorsD1Ev
+                0x00000402                _ZN11Rj11SensorsD2Ev
+ .text._ZN11Rj11Sensors5beginEh
+                0x00000404       0x40 Rj11Sensors.o
+                0x00000404                _ZN11Rj11Sensors5beginEh
+ .text._ZN11Rj11Sensors10countEdgesEv
+                0x00000444       0x1c Rj11Sensors.o
+                0x00000444                _ZN11Rj11Sensors10countEdgesEv
+ .text._ZN11Rj11Sensors11isrFunctionEv
+                0x00000460       0x10 Rj11Sensors.o
+                0x00000460                _ZN11Rj11Sensors11isrFunctionEv
  .text._ZN14SdcardBreakoutC2Ev
-                0x000003c8        0x2 SdcardBreakout.o
-                0x000003c8                _ZN14SdcardBreakoutC1Ev
-                0x000003c8                _ZN14SdcardBreakoutC2Ev
+                0x00000470        0x2 SdcardBreakout.o
+                0x00000470                _ZN14SdcardBreakoutC1Ev
+                0x00000470                _ZN14SdcardBreakoutC2Ev
  .text._ZN14SdcardBreakoutD2Ev
-                0x000003ca        0x2 SdcardBreakout.o
-                0x000003ca                _ZN14SdcardBreakoutD1Ev
-                0x000003ca                _ZN14SdcardBreakoutD2Ev
+                0x00000472        0x2 SdcardBreakout.o
+                0x00000472                _ZN14SdcardBreakoutD1Ev
+                0x00000472                _ZN14SdcardBreakoutD2Ev
  .text._ZN14SdcardBreakout18initSdcardBreakoutEv
-                0x000003cc       0x42 SdcardBreakout.o
-                0x000003cc                _ZN14SdcardBreakout18initSdcardBreakoutEv
+                0x00000474       0x42 SdcardBreakout.o
+                0x00000474                _ZN14SdcardBreakout18initSdcardBreakoutEv
  .text.startup._GLOBAL__sub_I_datalog
-                0x0000040e        0x8 SdcardBreakout.o
+                0x000004b6        0x8 SdcardBreakout.o
  .text._ZN8SPIClass16beginTransactionE11SPISettings
-                0x00000416       0x34 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x00000416                _ZN8SPIClass16beginTransactionE11SPISettings
+                0x000004be       0x34 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x000004be                _ZN8SPIClass16beginTransactionE11SPISettings
  .text._ZN8SPIClass14endTransactionEv
-                0x0000044a       0x22 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000044a                _ZN8SPIClass14endTransactionEv
+                0x000004f2       0x22 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x000004f2                _ZN8SPIClass14endTransactionEv
  .text._ZN15Adafruit_BME280C2Ev
-                0x0000046c        0xe src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000046c                _ZN15Adafruit_BME280C2Ev
-                0x0000046c                _ZN15Adafruit_BME280C1Ev
+                0x00000514        0xe src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000514                _ZN15Adafruit_BME280C2Ev
+                0x00000514                _ZN15Adafruit_BME280C1Ev
  .text._ZN15Adafruit_BME2807spixferEh
-                0x0000047a       0x8e src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000047a                _ZN15Adafruit_BME2807spixferEh
+                0x00000522       0x8e src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000522                _ZN15Adafruit_BME2807spixferEh
  .text._ZN15Adafruit_BME2806write8Ehh
-                0x00000508       0x96 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x00000508                _ZN15Adafruit_BME2806write8Ehh
+                0x000005b0       0x96 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x000005b0                _ZN15Adafruit_BME2806write8Ehh
  .text._ZN15Adafruit_BME28011setSamplingENS_11sensor_modeENS_15sensor_samplingES1_S1_NS_13sensor_filterENS_16standby_durationE
-                0x0000059e       0xce src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000059e                _ZN15Adafruit_BME28011setSamplingENS_11sensor_modeENS_15sensor_samplingES1_S1_NS_13sensor_filterENS_16standby_durationE
+                0x00000646       0xce src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000646                _ZN15Adafruit_BME28011setSamplingENS_11sensor_modeENS_15sensor_samplingES1_S1_NS_13sensor_filterENS_16standby_durationE
  .text._ZN15Adafruit_BME2805read8Eh
-                0x0000066c       0x90 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000066c                _ZN15Adafruit_BME2805read8Eh
+                0x00000714       0x90 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000714                _ZN15Adafruit_BME2805read8Eh
  .text._ZN15Adafruit_BME2806read16Eh
-                0x000006fc       0xc4 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x000006fc                _ZN15Adafruit_BME2806read16Eh
+                0x000007a4       0xc4 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x000007a4                _ZN15Adafruit_BME2806read16Eh
  .text._ZN15Adafruit_BME2809read16_LEEh
-                0x000007c0        0xa src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x000007c0                _ZN15Adafruit_BME2809read16_LEEh
+                0x00000868        0xa src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000868                _ZN15Adafruit_BME2809read16_LEEh
  .text._ZN15Adafruit_BME28016readCoefficientsEv
-                0x000007ca       0xf0 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x000007ca                _ZN15Adafruit_BME28016readCoefficientsEv
+                0x00000872       0xf0 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000872                _ZN15Adafruit_BME28016readCoefficientsEv
  .text._ZN15Adafruit_BME28020isReadingCalibrationEv
-                0x000008ba        0x8 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x000008ba                _ZN15Adafruit_BME28020isReadingCalibrationEv
+                0x00000962        0x8 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000962                _ZN15Adafruit_BME28020isReadingCalibrationEv
  .text._ZN15Adafruit_BME2804initEv
-                0x000008c2       0xac src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x000008c2                _ZN15Adafruit_BME2804initEv
+                0x0000096a       0xac src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x0000096a                _ZN15Adafruit_BME2804initEv
  .text._ZN15Adafruit_BME2805beginEv
-                0x0000096e       0x10 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
-                0x0000096e                _ZN15Adafruit_BME2805beginEv
+                0x00000a16       0x10 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x00000a16                _ZN15Adafruit_BME2805beginEv
  .text._ZL6conv2dPKc
-                0x0000097e       0x1a src/libraries/RTCLib/RTClib.o
+                0x00000a26       0x1a src/libraries/RTCLib/RTClib.o
  .text._ZN8DateTimeC2EPK19__FlashStringHelperS2_
-                0x00000998       0xee src/libraries/RTCLib/RTClib.o
-                0x00000998                _ZN8DateTimeC2EPK19__FlashStringHelperS2_
-                0x00000998                _ZN8DateTimeC1EPK19__FlashStringHelperS2_
+                0x00000a40       0xee src/libraries/RTCLib/RTClib.o
+                0x00000a40                _ZN8DateTimeC2EPK19__FlashStringHelperS2_
+                0x00000a40                _ZN8DateTimeC1EPK19__FlashStringHelperS2_
  .text._ZN10RTC_DS32315beginEv
-                0x00000a86        0xa src/libraries/RTCLib/RTClib.o
-                0x00000a86                _ZN10RTC_DS32315beginEv
+                0x00000b2e        0xa src/libraries/RTCLib/RTClib.o
+                0x00000b2e                _ZN10RTC_DS32315beginEv
  .text._ZL17read_i2c_registerhh.constprop.7
-                0x00000a90       0x2e src/libraries/RTCLib/RTClib.o
+                0x00000b38       0x2e src/libraries/RTCLib/RTClib.o
  .text._ZN10RTC_DS32316adjustERK8DateTime
-                0x00000abe      0x10a src/libraries/RTCLib/RTClib.o
-                0x00000abe                _ZN10RTC_DS32316adjustERK8DateTime
+                0x00000b66      0x10a src/libraries/RTCLib/RTClib.o
+                0x00000b66                _ZN10RTC_DS32316adjustERK8DateTime
  .text._ZN10RTC_DS32319lostPowerEv
-                0x00000bc8        0xc src/libraries/RTCLib/RTClib.o
-                0x00000bc8                _ZN10RTC_DS32319lostPowerEv
+                0x00000c70        0xc src/libraries/RTCLib/RTClib.o
+                0x00000c70                _ZN10RTC_DS32319lostPowerEv
  .text._ZN5Print17availableForWriteEv
-                0x00000bd4        0x6 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00000bd4                _ZN5Print17availableForWriteEv
+                0x00000c7c        0x6 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00000c7c                _ZN5Print17availableForWriteEv
  .text._ZN5Print5flushEv
-                0x00000bda        0x2 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00000bda                _ZN5Print5flushEv
+                0x00000c82        0x2 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00000c82                _ZN5Print5flushEv
  .text.__vector_9
-                0x00000bdc       0xfc src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00000bdc                __vector_9
-                0x00000bdc                __vector_10
-                0x00000bdc                __vector_11
+                0x00000c84       0xfc src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00000c84                __vector_9
+                0x00000c84                __vector_10
+                0x00000c84                __vector_11
  .text.twi_init
-                0x00000cd8       0x38 src/libraries/Wire/src/utility/twi.o
-                0x00000cd8                twi_init
+                0x00000d80       0x3c src/libraries/Wire/src/utility/twi.o
+                0x00000d80                twi_init
  .text.twi_readFrom
-                0x00000d10       0x90 src/libraries/Wire/src/utility/twi.o
-                0x00000d10                twi_readFrom
+                0x00000dbc       0x90 src/libraries/Wire/src/utility/twi.o
+                0x00000dbc                twi_readFrom
  .text.twi_writeTo
-                0x00000da0       0xac src/libraries/Wire/src/utility/twi.o
-                0x00000da0                twi_writeTo
+                0x00000e4c       0xac src/libraries/Wire/src/utility/twi.o
+                0x00000e4c                twi_writeTo
  .text.twi_transmit
-                0x00000e4c       0x50 src/libraries/Wire/src/utility/twi.o
-                0x00000e4c                twi_transmit
+                0x00000ef8       0x50 src/libraries/Wire/src/utility/twi.o
+                0x00000ef8                twi_transmit
  .text.twi_attachSlaveRxEvent
-                0x00000e9c        0xa src/libraries/Wire/src/utility/twi.o
-                0x00000e9c                twi_attachSlaveRxEvent
+                0x00000f48        0xa src/libraries/Wire/src/utility/twi.o
+                0x00000f48                twi_attachSlaveRxEvent
  .text.twi_attachSlaveTxEvent
-                0x00000ea6        0xa src/libraries/Wire/src/utility/twi.o
-                0x00000ea6                twi_attachSlaveTxEvent
+                0x00000f52        0xa src/libraries/Wire/src/utility/twi.o
+                0x00000f52                twi_attachSlaveTxEvent
  .text.twi_stop
-                0x00000eb0       0x14 src/libraries/Wire/src/utility/twi.o
-                0x00000eb0                twi_stop
+                0x00000f5c       0x14 src/libraries/Wire/src/utility/twi.o
+                0x00000f5c                twi_stop
  .text.twi_releaseBus
-                0x00000ec4        0xc src/libraries/Wire/src/utility/twi.o
-                0x00000ec4                twi_releaseBus
+                0x00000f70        0xc src/libraries/Wire/src/utility/twi.o
+                0x00000f70                twi_releaseBus
  .text.__vector_39
-                0x00000ed0      0x25c src/libraries/Wire/src/utility/twi.o
-                0x00000ed0                __vector_39
+                0x00000f7c      0x25c src/libraries/Wire/src/utility/twi.o
+                0x00000f7c                __vector_39
  .text._ZN7TwoWire9availableEv
-                0x0000112c       0x10 src/libraries/Wire/src/Wire.o
-                0x0000112c                _ZN7TwoWire9availableEv
+                0x000011d8       0x10 src/libraries/Wire/src/Wire.o
+                0x000011d8                _ZN7TwoWire9availableEv
  .text._ZN7TwoWire4readEv
-                0x0000113c       0x28 src/libraries/Wire/src/Wire.o
-                0x0000113c                _ZN7TwoWire4readEv
+                0x000011e8       0x28 src/libraries/Wire/src/Wire.o
+                0x000011e8                _ZN7TwoWire4readEv
  .text._ZN7TwoWire4peekEv
-                0x00001164       0x1e src/libraries/Wire/src/Wire.o
-                0x00001164                _ZN7TwoWire4peekEv
+                0x00001210       0x1e src/libraries/Wire/src/Wire.o
+                0x00001210                _ZN7TwoWire4peekEv
  .text._ZN7TwoWire5flushEv
-                0x00001182        0x2 src/libraries/Wire/src/Wire.o
-                0x00001182                _ZN7TwoWire5flushEv
+                0x0000122e        0x2 src/libraries/Wire/src/Wire.o
+                0x0000122e                _ZN7TwoWire5flushEv
  .text._ZN7TwoWire16onReceiveServiceEPhi
-                0x00001184       0x54 src/libraries/Wire/src/Wire.o
-                0x00001184                _ZN7TwoWire16onReceiveServiceEPhi
+                0x00001230       0x54 src/libraries/Wire/src/Wire.o
+                0x00001230                _ZN7TwoWire16onReceiveServiceEPhi
  .text._ZN7TwoWire16onRequestServiceEv
-                0x000011d8       0x18 src/libraries/Wire/src/Wire.o
-                0x000011d8                _ZN7TwoWire16onRequestServiceEv
+                0x00001284       0x18 src/libraries/Wire/src/Wire.o
+                0x00001284                _ZN7TwoWire16onRequestServiceEv
  .text._ZN7TwoWire5writeEPKhj
-                0x000011f0       0x58 src/libraries/Wire/src/Wire.o
-                0x000011f0                _ZN7TwoWire5writeEPKhj
+                0x0000129c       0x58 src/libraries/Wire/src/Wire.o
+                0x0000129c                _ZN7TwoWire5writeEPKhj
  .text._ZN7TwoWire5writeEh
-                0x00001248       0x5c src/libraries/Wire/src/Wire.o
-                0x00001248                _ZN7TwoWire5writeEh
+                0x000012f4       0x5c src/libraries/Wire/src/Wire.o
+                0x000012f4                _ZN7TwoWire5writeEh
  .text._ZN7TwoWireC2Ev
-                0x000012a4       0x20 src/libraries/Wire/src/Wire.o
-                0x000012a4                _ZN7TwoWireC1Ev
-                0x000012a4                _ZN7TwoWireC2Ev
+                0x00001350       0x20 src/libraries/Wire/src/Wire.o
+                0x00001350                _ZN7TwoWireC1Ev
+                0x00001350                _ZN7TwoWireC2Ev
  .text._ZN7TwoWire5beginEv
-                0x000012c4       0x1e src/libraries/Wire/src/Wire.o
-                0x000012c4                _ZN7TwoWire5beginEv
+                0x00001370       0x1e src/libraries/Wire/src/Wire.o
+                0x00001370                _ZN7TwoWire5beginEv
  .text._ZN7TwoWire17beginTransmissionEh
-                0x000012e2       0x14 src/libraries/Wire/src/Wire.o
-                0x000012e2                _ZN7TwoWire17beginTransmissionEh
+                0x0000138e       0x14 src/libraries/Wire/src/Wire.o
+                0x0000138e                _ZN7TwoWire17beginTransmissionEh
  .text._ZN7TwoWire17beginTransmissionEi
-                0x000012f6        0x2 src/libraries/Wire/src/Wire.o
-                0x000012f6                _ZN7TwoWire17beginTransmissionEi
+                0x000013a2        0x2 src/libraries/Wire/src/Wire.o
+                0x000013a2                _ZN7TwoWire17beginTransmissionEi
  .text._ZN7TwoWire15endTransmissionEh
-                0x000012f8       0x24 src/libraries/Wire/src/Wire.o
-                0x000012f8                _ZN7TwoWire15endTransmissionEh
+                0x000013a4       0x24 src/libraries/Wire/src/Wire.o
+                0x000013a4                _ZN7TwoWire15endTransmissionEh
  .text._ZN7TwoWire11requestFromEhhmhh
-                0x0000131c       0xa2 src/libraries/Wire/src/Wire.o
-                0x0000131c                _ZN7TwoWire11requestFromEhhmhh
+                0x000013c8       0xa2 src/libraries/Wire/src/Wire.o
+                0x000013c8                _ZN7TwoWire11requestFromEhhmhh
  .text._ZN7TwoWire11requestFromEhhh
-                0x000013be       0x1e src/libraries/Wire/src/Wire.o
-                0x000013be                _ZN7TwoWire11requestFromEhhh
+                0x0000146a       0x1e src/libraries/Wire/src/Wire.o
+                0x0000146a                _ZN7TwoWire11requestFromEhhh
  .text._ZN7TwoWire11requestFromEhh
-                0x000013dc        0x4 src/libraries/Wire/src/Wire.o
-                0x000013dc                _ZN7TwoWire11requestFromEhh
+                0x00001488        0x4 src/libraries/Wire/src/Wire.o
+                0x00001488                _ZN7TwoWire11requestFromEhh
  .text._ZN7TwoWire15endTransmissionEv
-                0x000013e0        0x4 src/libraries/Wire/src/Wire.o
-                0x000013e0                _ZN7TwoWire15endTransmissionEv
+                0x0000148c        0x4 src/libraries/Wire/src/Wire.o
+                0x0000148c                _ZN7TwoWire15endTransmissionEv
  .text.startup._GLOBAL__sub_I__ZN7TwoWire8rxBufferE
-                0x000013e4        0x6 src/libraries/Wire/src/Wire.o
+                0x00001490        0x6 src/libraries/Wire/src/Wire.o
  .text._ZN20TempHumidPressSensorC2Ev
-                0x000013ea        0x2 TempHumidPressSensor.o
-                0x000013ea                _ZN20TempHumidPressSensorC1Ev
-                0x000013ea                _ZN20TempHumidPressSensorC2Ev
+                0x00001496        0x2 TempHumidPressSensor.o
+                0x00001496                _ZN20TempHumidPressSensorC1Ev
+                0x00001496                _ZN20TempHumidPressSensorC2Ev
  .text._ZN20TempHumidPressSensorD2Ev
-                0x000013ec        0x2 TempHumidPressSensor.o
-                0x000013ec                _ZN20TempHumidPressSensorD1Ev
-                0x000013ec                _ZN20TempHumidPressSensorD2Ev
+                0x00001498        0x2 TempHumidPressSensor.o
+                0x00001498                _ZN20TempHumidPressSensorD1Ev
+                0x00001498                _ZN20TempHumidPressSensorD2Ev
  .text._ZN20TempHumidPressSensor24initTempHumidPressSensorEv
-                0x000013ee       0x20 TempHumidPressSensor.o
-                0x000013ee                _ZN20TempHumidPressSensor24initTempHumidPressSensorEv
+                0x0000149a       0x20 TempHumidPressSensor.o
+                0x0000149a                _ZN20TempHumidPressSensor24initTempHumidPressSensorEv
  .text.startup._GLOBAL__sub_I_bme280
-                0x0000140e        0x6 TempHumidPressSensor.o
+                0x000014ba        0x6 TempHumidPressSensor.o
  .text._ZN14HardwareSerial9availableEv
-                0x00001414       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x00001414                _ZN14HardwareSerial9availableEv
+                0x000014c0       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000014c0                _ZN14HardwareSerial9availableEv
  .text._ZN14HardwareSerial4peekEv
-                0x0000142c       0x1c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x0000142c                _ZN14HardwareSerial4peekEv
+                0x000014d8       0x1c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000014d8                _ZN14HardwareSerial4peekEv
  .text._ZN14HardwareSerial4readEv
-                0x00001448       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x00001448                _ZN14HardwareSerial4readEv
+                0x000014f4       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000014f4                _ZN14HardwareSerial4readEv
  .text._ZN14HardwareSerial17availableForWriteEv
-                0x00001470       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x00001470                _ZN14HardwareSerial17availableForWriteEv
+                0x0000151c       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x0000151c                _ZN14HardwareSerial17availableForWriteEv
  .text._Z14serialEventRunv
-                0x0000148e       0x78 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x0000148e                _Z14serialEventRunv
+                0x0000153a       0x78 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x0000153a                _Z14serialEventRunv
  .text._ZN14HardwareSerial17_tx_udr_empty_irqEv
-                0x00001506       0x44 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x00001506                _ZN14HardwareSerial17_tx_udr_empty_irqEv
+                0x000015b2       0x44 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000015b2                _ZN14HardwareSerial17_tx_udr_empty_irqEv
  .text._ZN14HardwareSerial5writeEh
-                0x0000154a       0x98 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x0000154a                _ZN14HardwareSerial5writeEh
+                0x000015f6       0x98 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000015f6                _ZN14HardwareSerial5writeEh
  .text._ZN14HardwareSerial5flushEv
-                0x000015e2       0x42 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x000015e2                _ZN14HardwareSerial5flushEv
+                0x0000168e       0x42 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x0000168e                _ZN14HardwareSerial5flushEv
  .text._ZN14HardwareSerial5beginEmh
-                0x00001624       0xca C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x00001624                _ZN14HardwareSerial5beginEmh
+                0x000016d0       0xca C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000016d0                _ZN14HardwareSerial5beginEmh
  .text.__vector_25
-                0x000016ee       0x6c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
-                0x000016ee                __vector_25
+                0x0000179a       0x6c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x0000179a                __vector_25
  .text.__vector_26
-                0x0000175a       0x52 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
-                0x0000175a                __vector_26
+                0x00001806       0x52 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00001806                __vector_26
  .text._Z17Serial0_availablev
-                0x000017ac       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
-                0x000017ac                _Z17Serial0_availablev
+                0x00001858       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00001858                _Z17Serial0_availablev
  .text.startup._GLOBAL__sub_I___vector_25
-                0x000017be       0x5a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x0000186a       0x5a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
  .text.initVariant
-                0x00001818        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
-                0x00001818                initVariant
+                0x000018c4        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                0x000018c4                initVariant
  .text.startup.main
-                0x0000181a       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
-                0x0000181a                main
+                0x000018c6       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                0x000018c6                main
  .text._ZN5Print5writeEPKhj
-                0x00001832       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
-                0x00001832                _ZN5Print5writeEPKhj
+                0x000018de       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x000018de                _ZN5Print5writeEPKhj
  .text._ZN5Print5writeEPKc
-                0x00001886       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
-                0x00001886                _ZN5Print5writeEPKc
+                0x00001932       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001932                _ZN5Print5writeEPKc
  .text._ZN5Print7printlnEv
-                0x000018b0        0x6 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
-                0x000018b0                _ZN5Print7printlnEv
+                0x0000195c        0x6 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x0000195c                _ZN5Print7printlnEv
  .text._ZN5Print7printlnEPKc
-                0x000018b6       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
-                0x000018b6                _ZN5Print7printlnEPKc
+                0x00001962       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001962                _ZN5Print7printlnEPKc
+ .text.nothing  0x00001982        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .text.attachInterrupt
+                0x00001984       0xe8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001984                attachInterrupt
+ .text.__vector_1
+                0x00001a6c       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001a6c                __vector_1
+ .text.__vector_2
+                0x00001ac2       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001ac2                __vector_2
+ .text.__vector_3
+                0x00001b18       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001b18                __vector_3
+ .text.__vector_4
+                0x00001b6e       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001b6e                __vector_4
+ .text.__vector_5
+                0x00001bc4       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001bc4                __vector_5
+ .text.__vector_6
+                0x00001c1a       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001c1a                __vector_6
+ .text.__vector_7
+                0x00001c70       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001c70                __vector_7
+ .text.__vector_8
+                0x00001cc6       0x56 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                0x00001cc6                __vector_8
  .text.__vector_23
-                0x000018d6       0x94 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x000018d6                __vector_23
- .text.millis   0x0000196a       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x0000196a                millis
- .text.micros   0x00001982       0x4a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x00001982                micros
- .text.delay    0x000019cc       0x74 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x000019cc                delay
- .text.init     0x00001a40       0xc4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x00001a40                init
+                0x00001d1c       0x94 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001d1c                __vector_23
+ .text.millis   0x00001db0       0x18 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001db0                millis
+ .text.micros   0x00001dc8       0x4a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001dc8                micros
+ .text.delay    0x00001e12       0x74 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001e12                delay
+ .text.init     0x00001e86       0xc4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001e86                init
  .text.turnOffPWM
-                0x00001b04       0xac C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .text.pinMode  0x00001bb0       0x78 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00001bb0                pinMode
+                0x00001f4a       0xac C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .text.pinMode  0x00001ff6       0x78 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00001ff6                pinMode
  .text.digitalWrite
-                0x00001c28       0x5c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00001c28                digitalWrite
+                0x0000206e       0x5c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x0000206e                digitalWrite
  .text.digitalRead
-                0x00001c84       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
-                0x00001c84                digitalRead
+                0x000020ca       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x000020ca                digitalRead
  .text._ZN6StringD2Ev
-                0x00001cd4        0xa C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001cd4                _ZN6StringD2Ev
-                0x00001cd4                _ZN6StringD1Ev
+                0x0000211a        0xa C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x0000211a                _ZN6StringD2Ev
+                0x0000211a                _ZN6StringD1Ev
  .text._ZN6String10invalidateEv
-                0x00001cde       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001cde                _ZN6String10invalidateEv
+                0x00002124       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x00002124                _ZN6String10invalidateEv
  .text._ZN6String12changeBufferEj
-                0x00001d02       0x34 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001d02                _ZN6String12changeBufferEj
+                0x00002148       0x34 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x00002148                _ZN6String12changeBufferEj
  .text._ZN6String7reserveEj
-                0x00001d36       0x36 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001d36                _ZN6String7reserveEj
+                0x0000217c       0x36 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x0000217c                _ZN6String7reserveEj
  .text._ZN6String4copyEPKcj
-                0x00001d6c       0x3e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001d6c                _ZN6String4copyEPKcj
+                0x000021b2       0x3e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x000021b2                _ZN6String4copyEPKcj
  .text._ZN6StringC2EPKc
-                0x00001daa       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
-                0x00001daa                _ZN6StringC2EPKc
-                0x00001daa                _ZN6StringC1EPKc
+                0x000021f0       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x000021f0                _ZN6StringC2EPKc
+                0x000021f0                _ZN6StringC1EPKc
  .text._ZN5SDLib4File5writeEh
-                0x00001dd2       0x2c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001dd2                _ZN5SDLib4File5writeEh
+                0x00002218       0x2c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x00002218                _ZN5SDLib4File5writeEh
  .text._ZN5SDLib4File5writeEPKhj
-                0x00001dfe       0x36 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001dfe                _ZN5SDLib4File5writeEPKhj
+                0x00002244       0x36 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x00002244                _ZN5SDLib4File5writeEPKhj
  .text._ZN5SDLib4File5flushEv
-                0x00001e34        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001e34                _ZN5SDLib4File5flushEv
+                0x0000227a        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x0000227a                _ZN5SDLib4File5flushEv
  .text._ZN6SdFile4readEv
-                0x00001e42       0x2c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001e42                _ZN6SdFile4readEv
+                0x00002288       0x2c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x00002288                _ZN6SdFile4readEv
  .text._ZN5SDLib4File4readEv
-                0x00001e6e       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001e6e                _ZN5SDLib4File4readEv
+                0x000022b4       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x000022b4                _ZN5SDLib4File4readEv
  .text._ZN5SDLib4File4peekEv
-                0x00001e80       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001e80                _ZN5SDLib4File4peekEv
+                0x000022c6       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x000022c6                _ZN5SDLib4File4peekEv
  .text._ZN5SDLib4FileC2Ev
-                0x00001ed0       0x26 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001ed0                _ZN5SDLib4FileC2Ev
-                0x00001ed0                _ZN5SDLib4FileC1Ev
+                0x00002316       0x26 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x00002316                _ZN5SDLib4FileC2Ev
+                0x00002316                _ZN5SDLib4FileC1Ev
  .text._ZN5SDLib4File8positionEv
-                0x00001ef6       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001ef6                _ZN5SDLib4File8positionEv
+                0x0000233c       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x0000233c                _ZN5SDLib4File8positionEv
  .text._ZN5SDLib4File4sizeEv
-                0x00001f16       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001f16                _ZN5SDLib4File4sizeEv
+                0x0000235c       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x0000235c                _ZN5SDLib4File4sizeEv
  .text._ZN5SDLib4File9availableEv
-                0x00001f36       0x5a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x00001f36                _ZN5SDLib4File9availableEv
+                0x0000237c       0x5a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x0000237c                _ZN5SDLib4File9availableEv
  .text._ZN8SdVolume4initEP7Sd2Card
-                0x00001f90       0x34 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
-                0x00001f90                _ZN8SdVolume4initEP7Sd2Card
+                0x000023d6       0x34 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+                0x000023d6                _ZN8SdVolume4initEP7Sd2Card
  .text._ZN5SDLib7SDClass5beginEh
-                0x00001fc4       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
-                0x00001fc4                _ZN5SDLib7SDClass5beginEh
+                0x0000240a       0x50 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+                0x0000240a                _ZN5SDLib7SDClass5beginEh
  .text.startup._GLOBAL__sub_I__ZN5SDLib20getNextPathComponentEPKcPjPc
-                0x00002014       0x2e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+                0x0000245a       0x2e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
  .text._ZN8SPIClass14endTransactionEv.part.3
-                0x00002042       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002488       0x1a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .text._ZN11SPISettingsC2Emhh
-                0x0000205c       0x4a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x0000205c                _ZN11SPISettingsC1Emhh
-                0x0000205c                _ZN11SPISettingsC2Emhh
+                0x000024a2       0x4a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000024a2                _ZN11SPISettingsC1Emhh
+                0x000024a2                _ZN11SPISettingsC2Emhh
  .text._ZN8SPIClass8transferEh
-                0x000020a6        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000020a6                _ZN8SPIClass8transferEh
+                0x000024ec        0xe C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000024ec                _ZN8SPIClass8transferEh
  .text._ZL6spiRecv
-                0x000020b4        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000024fa        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .text._ZN7Sd2Card14chipSelectHighEv
-                0x000020b8       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000020b8                _ZN7Sd2Card14chipSelectHighEv
+                0x000024fe       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000024fe                _ZN7Sd2Card14chipSelectHighEv
  .text._ZN7Sd2Card13chipSelectLowEv
-                0x000020d6       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000020d6                _ZN7Sd2Card13chipSelectLowEv
+                0x0000251c       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x0000251c                _ZN7Sd2Card13chipSelectLowEv
  .text._ZN7Sd2Card7readEndEv
-                0x00002100       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00002100                _ZN7Sd2Card7readEndEv
+                0x00002546       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002546                _ZN7Sd2Card7readEndEv
  .text._ZN7Sd2Card10setSckRateEh
-                0x00002130       0xb4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00002130                _ZN7Sd2Card10setSckRateEh
+                0x00002576       0xb4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002576                _ZN7Sd2Card10setSckRateEh
  .text._ZN7Sd2Card11waitNotBusyEj
-                0x000021e4       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000021e4                _ZN7Sd2Card11waitNotBusyEj
+                0x0000262a       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x0000262a                _ZN7Sd2Card11waitNotBusyEj
  .text._ZN7Sd2Card11cardCommandEhm
-                0x00002214       0x90 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00002214                _ZN7Sd2Card11cardCommandEhm
+                0x0000265a       0x90 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x0000265a                _ZN7Sd2Card11cardCommandEhm
  .text._ZN7Sd2Card4initEhh
-                0x000022a4      0x188 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000022a4                _ZN7Sd2Card4initEhh
+                0x000026ea      0x188 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000026ea                _ZN7Sd2Card4initEhh
  .text._ZN7Sd2Card14waitStartBlockEv
-                0x0000242c       0x42 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x0000242c                _ZN7Sd2Card14waitStartBlockEv
+                0x00002872       0x42 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002872                _ZN7Sd2Card14waitStartBlockEv
  .text._ZN7Sd2Card8readDataEmjjPh.part.6
-                0x0000246e       0xec C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000028b4       0xec C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .text._ZN7Sd2Card8readDataEmjjPh
-                0x0000255a       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x0000255a                _ZN7Sd2Card8readDataEmjjPh
+                0x000029a0       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000029a0                _ZN7Sd2Card8readDataEmjjPh
  .text._ZN7Sd2Card9readBlockEmPh
-                0x00002578       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00002578                _ZN7Sd2Card9readBlockEmPh
+                0x000029be       0x1e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000029be                _ZN7Sd2Card9readBlockEmPh
  .text._ZN7Sd2Card9writeDataEhPKh
-                0x00002596       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x00002596                _ZN7Sd2Card9writeDataEhPKh
+                0x000029dc       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x000029dc                _ZN7Sd2Card9writeDataEhPKh
  .text._ZN7Sd2Card10writeBlockEmPKh
-                0x000025ea       0x8e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
-                0x000025ea                _ZN7Sd2Card10writeBlockEmPKh
+                0x00002a30       0x8e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002a30                _ZN7Sd2Card10writeBlockEmPKh
  .text.startup._GLOBAL__sub_I__ZN7Sd2Card11cardCommandEhm
-                0x00002678        0xc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00002abe        0xc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .text._ZN6SdFile10addClusterEv
-                0x00002684       0x4c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002684                _ZN6SdFile10addClusterEv
+                0x00002aca       0x4c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002aca                _ZN6SdFile10addClusterEv
  .text._ZN6SdFile13cacheDirEntryEh
-                0x000026d0       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x000026d0                _ZN6SdFile13cacheDirEntryEh
+                0x00002b16       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002b16                _ZN6SdFile13cacheDirEntryEh
  .text._ZN6SdFile8openRootEP8SdVolume
-                0x00002700       0xa0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002700                _ZN6SdFile8openRootEP8SdVolume
+                0x00002b46       0xa0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002b46                _ZN6SdFile8openRootEP8SdVolume
  .text._ZN6SdFile4readEPvj
-                0x000027a0      0x204 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x000027a0                _ZN6SdFile4readEPvj
+                0x00002be6      0x204 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002be6                _ZN6SdFile4readEPvj
  .text._ZN6SdFile7seekSetEm
-                0x000029a4      0x12c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x000029a4                _ZN6SdFile7seekSetEm
+                0x00002dea      0x12c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002dea                _ZN6SdFile7seekSetEm
  .text._ZN6SdFile4syncEv
-                0x00002ad0       0x8a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002ad0                _ZN6SdFile4syncEv
+                0x00002f16       0x8a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002f16                _ZN6SdFile4syncEv
  .text._ZN6SdFile5closeEv
-                0x00002b5a       0x16 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002b5a                _ZN6SdFile5closeEv
+                0x00002fa0       0x16 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002fa0                _ZN6SdFile5closeEv
  .text._ZN6SdFile5writeEPKvj
-                0x00002b70      0x334 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002b70                _ZN6SdFile5writeEPKvj
+                0x00002fb6      0x334 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00002fb6                _ZN6SdFile5writeEPKvj
  .text._ZN6SdFile5writeEh
-                0x00002ea4       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00002ea4                _ZN6SdFile5writeEh
+                0x000032ea       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x000032ea                _ZN6SdFile5writeEh
  .text._ZN8SdVolume10cacheFlushEv
-                0x00002ec4       0x72 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00002ec4                _ZN8SdVolume10cacheFlushEv
+                0x0000330a       0x72 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x0000330a                _ZN8SdVolume10cacheFlushEv
  .text._ZN8SdVolume13cacheRawBlockEmh
-                0x00002f36       0x72 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00002f36                _ZN8SdVolume13cacheRawBlockEmh
+                0x0000337c       0x72 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x0000337c                _ZN8SdVolume13cacheRawBlockEmh
  .text._ZNK8SdVolume6fatGetEmPm
-                0x00002fa8      0x104 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00002fa8                _ZNK8SdVolume6fatGetEmPm
+                0x000033ee      0x104 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x000033ee                _ZNK8SdVolume6fatGetEmPm
  .text._ZNK8SdVolume9chainSizeEmPm
-                0x000030ac       0xd0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x000030ac                _ZNK8SdVolume9chainSizeEmPm
+                0x000034f2       0xd0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x000034f2                _ZNK8SdVolume9chainSizeEmPm
  .text._ZN8SdVolume6fatPutEmm
-                0x0000317c      0x140 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x0000317c                _ZN8SdVolume6fatPutEmm
+                0x000035c2      0x140 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x000035c2                _ZN8SdVolume6fatPutEmm
  .text._ZN8SdVolume15allocContiguousEmPm
-                0x000032bc      0x222 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x000032bc                _ZN8SdVolume15allocContiguousEmPm
+                0x00003702      0x222 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00003702                _ZN8SdVolume15allocContiguousEmPm
  .text._ZN8SdVolume4initEP7Sd2Cardh
-                0x000034de      0x228 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x000034de                _ZN8SdVolume4initEP7Sd2Cardh
+                0x00003924      0x228 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00003924                _ZN8SdVolume4initEP7Sd2Cardh
  .text._ZN8SPIClass5beginEv
-                0x00003706       0x6c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
-                0x00003706                _ZN8SPIClass5beginEv
- .text.__empty  0x00003772        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
-                0x00003772                yield
+                0x00003b4c       0x6c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00003b4c                _ZN8SPIClass5beginEv
+ .text.__empty  0x00003bb8        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+                0x00003bb8                yield
  .text.libgcc.div
-                0x00003774       0x18 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodqi4.o)
-                0x00003774                __udivmodqi4
+                0x00003bba       0x18 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodqi4.o)
+                0x00003bba                __udivmodqi4
  .text.libgcc.div
-                0x0000378c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
-                0x0000378c                __udivmodsi4
- .text.libgcc   0x000037d0       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
-                0x000037d0                __tablejump2__
+                0x00003bd2       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
+                0x00003bd2                __udivmodsi4
+ .text.libgcc   0x00003c16       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
+                0x00003c16                __tablejump2__
  .text.libgcc.mul
-                0x000037e0       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_umulhisi3.o)
-                0x000037e0                __umulhisi3
+                0x00003c26       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_umulhisi3.o)
+                0x00003c26                __umulhisi3
  .text.libgcc.mul
-                0x000037fe       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_muluhisi3.o)
-                0x000037fe                __muluhisi3
+                0x00003c44       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_muluhisi3.o)
+                0x00003c44                __muluhisi3
  .text.avr-libc
-                0x00003812      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x00003812                malloc
-                0x00003942                free
+                0x00003c58      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x00003c58                malloc
+                0x00003d88                free
  .text.avr-libc
-                0x00003a54      0x1c0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(realloc.o)
-                0x00003a54                realloc
+                0x00003e9a      0x1c0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(realloc.o)
+                0x00003e9a                realloc
  .text.avr-libc
-                0x00003c14       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memcpy_P.o)
-                0x00003c14                memcpy_P
+                0x0000405a       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memcpy_P.o)
+                0x0000405a                memcpy_P
  .text.avr-libc
-                0x00003c26       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memcpy.o)
-                0x00003c26                memcpy
+                0x0000406c       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memcpy.o)
+                0x0000406c                memcpy
  .text.avr-libc
-                0x00003c38        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strcpy.o)
-                0x00003c38                strcpy
-                0x00003c46                . = ALIGN (0x2)
+                0x0000407e        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strcpy.o)
+                0x0000407e                strcpy
+                0x0000408c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00003c46        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x00003c46                _exit
-                0x00003c46                exit
+ .fini9         0x0000408c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x0000408c                _exit
+                0x0000408c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
  *(.fini7)
  *(.fini7)
  *(.fini6)
- .fini6         0x00003c46       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_dtors.o)
-                0x00003c46                __do_global_dtors
+ .fini6         0x0000408c       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_dtors.o)
+                0x0000408c                __do_global_dtors
  *(.fini6)
  *(.fini5)
  *(.fini5)
@@ -2530,11 +2568,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00003c64        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x000040aa        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00003c68                _etext = .
+                0x000040ae                _etext = .
 
-.data           0x00800200      0x1f6 load address 0x00003c68
+.data           0x00800200      0x206 load address 0x000040ae
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
@@ -2542,194 +2580,203 @@ END GROUP
                 0x00800202                __malloc_heap_start
                 0x00800204                __malloc_margin
  *(.data*)
+ .data.intFunc  0x00800206       0x10 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
  .data._ZN8SdVolume17cacheBlockNumber_E
-                0x00800206        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00800206                _ZN8SdVolume17cacheBlockNumber_E
+                0x00800216        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00800216                _ZN8SdVolume17cacheBlockNumber_E
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080020a        0xc main.o
+                0x0080021a        0xc main.o
                                   0xd (size before relaxing)
  .rodata.str1.1
-                0x00800216       0x85 RealTimeClock.o
+                0x00800226       0x85 RealTimeClock.o
                                  0x86 (size before relaxing)
  .rodata.str1.1
-                0x0080029b       0x8e SdcardBreakout.o
+                0x008002ab       0x8e SdcardBreakout.o
  .rodata._ZTV7TwoWire
-                0x00800329       0x12 src/libraries/Wire/src/Wire.o
-                0x00800329                _ZTV7TwoWire
+                0x00800339       0x12 src/libraries/Wire/src/Wire.o
+                0x00800339                _ZTV7TwoWire
  .rodata.str1.1
-                0x0080033b       0x7c TempHumidPressSensor.o
+                0x0080034b       0x7c TempHumidPressSensor.o
  .rodata._ZTV14HardwareSerial
-                0x008003b7       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
-                0x008003b7                _ZTV14HardwareSerial
+                0x008003c7       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x008003c7                _ZTV14HardwareSerial
  .rodata.str1.1
-                0x008003c9        0xf C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x008003d9        0xf C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
  .rodata._ZTVN5SDLib4FileE
-                0x008003d8       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
-                0x008003d8                _ZTVN5SDLib4FileE
+                0x008003e8       0x12 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x008003e8                _ZTVN5SDLib4FileE
  .rodata._ZTV6SdFile
-                0x008003ea        0xc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x008003ea                _ZTV6SdFile
+                0x008003fa        0xc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x008003fa                _ZTV6SdFile
  *(.gnu.linkonce.r*)
-                0x008003f6                . = ALIGN (0x2)
-                0x008003f6                _edata = .
-                0x008003f6                PROVIDE (__data_end, .)
+                0x00800406                . = ALIGN (0x2)
+                0x00800406                _edata = .
+                0x00800406                PROVIDE (__data_end, .)
 
-.bss            0x008003f6      0x48b
-                0x008003f6                PROVIDE (__bss_start, .)
+.bss            0x00800406      0x495
+                0x00800406                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.myData    0x008003f6        0x6 main.o
-                0x008003f6                myData
- .bss.ts        0x008003fc        0xd main.o
-                0x008003fc                ts
+ .bss.myData    0x00800406        0x6 main.o
+                0x00800406                myData
+ .bss.kipp      0x0080040c        0x4 main.o
+                0x0080040c                kipp
+ .bss.anemometer
+                0x00800410        0x4 main.o
+                0x00800410                anemometer
+ .bss._ZN11Rj11Sensors8instanceE
+                0x00800414        0x2 main.o
+                0x00800414                _ZN11Rj11Sensors8instanceE
+ .bss.ts        0x00800416        0xd main.o
+                0x00800416                ts
  .bss.realtimeclock
-                0x00800409        0xd main.o
-                0x00800409                realtimeclock
- .bss.thps      0x00800416       0x10 main.o
-                0x00800416                thps
- .bss.sd        0x00800426        0x1 main.o
-                0x00800426                sd
- .bss.rtc       0x00800427        0x1 RealTimeClock.o
-                0x00800427                rtc
- .bss.datalog   0x00800428       0x1b SdcardBreakout.o
-                0x00800428                datalog
+                0x00800423        0xd main.o
+                0x00800423                realtimeclock
+ .bss.thps      0x00800430       0x10 main.o
+                0x00800430                thps
+ .bss.sd        0x00800440        0x1 main.o
+                0x00800440                sd
+ .bss.rtc       0x00800441        0x1 RealTimeClock.o
+                0x00800441                rtc
+ .bss.datalog   0x00800442       0x1b SdcardBreakout.o
+                0x00800442                datalog
  .bss._ZN14SoftwareSerial20_receive_buffer_headE
-                0x00800443        0x1 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800443                _ZN14SoftwareSerial20_receive_buffer_headE
+                0x0080045d        0x1 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080045d                _ZN14SoftwareSerial20_receive_buffer_headE
  .bss._ZN14SoftwareSerial20_receive_buffer_tailE
-                0x00800444        0x1 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800444                _ZN14SoftwareSerial20_receive_buffer_tailE
+                0x0080045e        0x1 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080045e                _ZN14SoftwareSerial20_receive_buffer_tailE
  .bss._ZN14SoftwareSerial15_receive_bufferE
-                0x00800445       0x40 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800445                _ZN14SoftwareSerial15_receive_bufferE
+                0x0080045f       0x40 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080045f                _ZN14SoftwareSerial15_receive_bufferE
  .bss._ZN14SoftwareSerial13active_objectE
-                0x00800485        0x2 src/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800485                _ZN14SoftwareSerial13active_objectE
+                0x0080049f        0x2 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080049f                _ZN14SoftwareSerial13active_objectE
  .bss.twi_error
-                0x00800487        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004a1        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_rxBufferIndex
-                0x00800488        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004a2        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_rxBuffer
-                0x00800489       0x20 src/libraries/Wire/src/utility/twi.o
+                0x008004a3       0x20 src/libraries/Wire/src/utility/twi.o
  .bss.twi_txBufferLength
-                0x008004a9        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004c3        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_txBufferIndex
-                0x008004aa        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004c4        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_txBuffer
-                0x008004ab       0x20 src/libraries/Wire/src/utility/twi.o
+                0x008004c5       0x20 src/libraries/Wire/src/utility/twi.o
  .bss.twi_masterBufferLength
-                0x008004cb        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004e5        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_masterBufferIndex
-                0x008004cc        0x1 src/libraries/Wire/src/utility/twi.o
+                0x008004e6        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_masterBuffer
-                0x008004cd       0x20 src/libraries/Wire/src/utility/twi.o
+                0x008004e7       0x20 src/libraries/Wire/src/utility/twi.o
  .bss.twi_onSlaveReceive
-                0x008004ed        0x2 src/libraries/Wire/src/utility/twi.o
+                0x00800507        0x2 src/libraries/Wire/src/utility/twi.o
  .bss.twi_onSlaveTransmit
-                0x008004ef        0x2 src/libraries/Wire/src/utility/twi.o
+                0x00800509        0x2 src/libraries/Wire/src/utility/twi.o
  .bss.twi_inRepStart
-                0x008004f1        0x1 src/libraries/Wire/src/utility/twi.o
+                0x0080050b        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_sendStop
-                0x008004f2        0x1 src/libraries/Wire/src/utility/twi.o
+                0x0080050c        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_slarw
-                0x008004f3        0x1 src/libraries/Wire/src/utility/twi.o
+                0x0080050d        0x1 src/libraries/Wire/src/utility/twi.o
  .bss.twi_state
-                0x008004f4        0x1 src/libraries/Wire/src/utility/twi.o
- .bss.Wire      0x008004f5        0xc src/libraries/Wire/src/Wire.o
-                0x008004f5                Wire
+                0x0080050e        0x1 src/libraries/Wire/src/utility/twi.o
+ .bss.Wire      0x0080050f        0xc src/libraries/Wire/src/Wire.o
+                0x0080050f                Wire
  .bss._ZN7TwoWire14user_onReceiveE
-                0x00800501        0x2 src/libraries/Wire/src/Wire.o
-                0x00800501                _ZN7TwoWire14user_onReceiveE
+                0x0080051b        0x2 src/libraries/Wire/src/Wire.o
+                0x0080051b                _ZN7TwoWire14user_onReceiveE
  .bss._ZN7TwoWire14user_onRequestE
-                0x00800503        0x2 src/libraries/Wire/src/Wire.o
-                0x00800503                _ZN7TwoWire14user_onRequestE
+                0x0080051d        0x2 src/libraries/Wire/src/Wire.o
+                0x0080051d                _ZN7TwoWire14user_onRequestE
  .bss._ZN7TwoWire12transmittingE
-                0x00800505        0x1 src/libraries/Wire/src/Wire.o
-                0x00800505                _ZN7TwoWire12transmittingE
+                0x0080051f        0x1 src/libraries/Wire/src/Wire.o
+                0x0080051f                _ZN7TwoWire12transmittingE
  .bss._ZN7TwoWire14txBufferLengthE
-                0x00800506        0x1 src/libraries/Wire/src/Wire.o
-                0x00800506                _ZN7TwoWire14txBufferLengthE
+                0x00800520        0x1 src/libraries/Wire/src/Wire.o
+                0x00800520                _ZN7TwoWire14txBufferLengthE
  .bss._ZN7TwoWire13txBufferIndexE
-                0x00800507        0x1 src/libraries/Wire/src/Wire.o
-                0x00800507                _ZN7TwoWire13txBufferIndexE
+                0x00800521        0x1 src/libraries/Wire/src/Wire.o
+                0x00800521                _ZN7TwoWire13txBufferIndexE
  .bss._ZN7TwoWire8txBufferE
-                0x00800508       0x20 src/libraries/Wire/src/Wire.o
-                0x00800508                _ZN7TwoWire8txBufferE
+                0x00800522       0x20 src/libraries/Wire/src/Wire.o
+                0x00800522                _ZN7TwoWire8txBufferE
  .bss._ZN7TwoWire9txAddressE
-                0x00800528        0x1 src/libraries/Wire/src/Wire.o
-                0x00800528                _ZN7TwoWire9txAddressE
+                0x00800542        0x1 src/libraries/Wire/src/Wire.o
+                0x00800542                _ZN7TwoWire9txAddressE
  .bss._ZN7TwoWire14rxBufferLengthE
-                0x00800529        0x1 src/libraries/Wire/src/Wire.o
-                0x00800529                _ZN7TwoWire14rxBufferLengthE
+                0x00800543        0x1 src/libraries/Wire/src/Wire.o
+                0x00800543                _ZN7TwoWire14rxBufferLengthE
  .bss._ZN7TwoWire13rxBufferIndexE
-                0x0080052a        0x1 src/libraries/Wire/src/Wire.o
-                0x0080052a                _ZN7TwoWire13rxBufferIndexE
+                0x00800544        0x1 src/libraries/Wire/src/Wire.o
+                0x00800544                _ZN7TwoWire13rxBufferIndexE
  .bss._ZN7TwoWire8rxBufferE
-                0x0080052b       0x20 src/libraries/Wire/src/Wire.o
-                0x0080052b                _ZN7TwoWire8rxBufferE
- .bss.bme280    0x0080054b       0x33 TempHumidPressSensor.o
-                0x0080054b                bme280
- .bss.Serial    0x0080057e       0x9d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
-                0x0080057e                Serial
+                0x00800545       0x20 src/libraries/Wire/src/Wire.o
+                0x00800545                _ZN7TwoWire8rxBufferE
+ .bss.bme280    0x00800565       0x33 TempHumidPressSensor.o
+                0x00800565                bme280
+ .bss.Serial    0x00800598       0x9d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00800598                Serial
  .bss.timer0_fract
-                0x0080061b        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00800635        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
  .bss.timer0_millis
-                0x0080061c        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x0080061c                timer0_millis
+                0x00800636        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00800636                timer0_millis
  .bss.timer0_overflow_count
-                0x00800620        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
-                0x00800620                timer0_overflow_count
+                0x0080063a        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x0080063a                timer0_overflow_count
  .bss._ZN5SDLib2SDE
-                0x00800624       0x49 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
-                0x00800624                _ZN5SDLib2SDE
+                0x0080063e       0x49 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+                0x0080063e                _ZN5SDLib2SDE
  .bss._ZL20chip_select_asserted
-                0x0080066d        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00800687        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .bss._ZL8settings
-                0x0080066e        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00800688        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .bss._ZN6SdFile9dateTime_E
-                0x00800670        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
-                0x00800670                _ZN6SdFile9dateTime_E
+                0x0080068a        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x0080068a                _ZN6SdFile9dateTime_E
  .bss._ZN8SdVolume17cacheMirrorBlock_E
-                0x00800672        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00800672                _ZN8SdVolume17cacheMirrorBlock_E
+                0x0080068c        0x4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x0080068c                _ZN8SdVolume17cacheMirrorBlock_E
  .bss._ZN8SdVolume11cacheDirty_E
-                0x00800676        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00800676                _ZN8SdVolume11cacheDirty_E
+                0x00800690        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00800690                _ZN8SdVolume11cacheDirty_E
  .bss._ZN8SdVolume7sdCard_E
-                0x00800677        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00800677                _ZN8SdVolume7sdCard_E
+                0x00800691        0x2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00800691                _ZN8SdVolume7sdCard_E
  .bss._ZN8SdVolume12cacheBuffer_E
-                0x00800679      0x200 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
-                0x00800679                _ZN8SdVolume12cacheBuffer_E
+                0x00800693      0x200 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00800693                _ZN8SdVolume12cacheBuffer_E
  .bss._ZN8SPIClass13interruptSaveE
-                0x00800879        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
-                0x00800879                _ZN8SPIClass13interruptSaveE
+                0x00800893        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00800893                _ZN8SPIClass13interruptSaveE
  .bss._ZN8SPIClass13interruptMaskE
-                0x0080087a        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
-                0x0080087a                _ZN8SPIClass13interruptMaskE
+                0x00800894        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00800894                _ZN8SPIClass13interruptMaskE
  .bss._ZN8SPIClass13interruptModeE
-                0x0080087b        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
-                0x0080087b                _ZN8SPIClass13interruptModeE
+                0x00800895        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00800895                _ZN8SPIClass13interruptModeE
  .bss._ZN8SPIClass11initializedE
-                0x0080087c        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
-                0x0080087c                _ZN8SPIClass11initializedE
+                0x00800896        0x1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00800896                _ZN8SPIClass11initializedE
  *(COMMON)
- COMMON         0x0080087d        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x0080087d                __brkval
-                0x0080087f                __flp
-                0x00800881                PROVIDE (__bss_end, .)
-                0x00003c68                __data_load_start = LOADADDR (.data)
-                0x00003e5e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800897        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x00800897                __brkval
+                0x00800899                __flp
+                0x0080089b                PROVIDE (__bss_end, .)
+                0x000040ae                __data_load_start = LOADADDR (.data)
+                0x000042b4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800881        0x0
+.noinit         0x0080089b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800881                _end = .
-                0x00800881                PROVIDE (__heap_start, .)
+                0x0080089b                _end = .
+                0x0080089b                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -2773,6 +2820,7 @@ END GROUP
  .comment       0x00000000       0x30 main.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 RealTimeClock.o
+ .comment       0x00000030       0x31 Rj11Sensors.o
  .comment       0x00000030       0x31 SdcardBreakout.o
  .comment       0x00000030       0x31 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
  .comment       0x00000030       0x31 src/libraries/RTCLib/RTClib.o
@@ -2784,6 +2832,7 @@ END GROUP
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
  .comment       0x00000030       0x31 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
@@ -2817,238 +2866,256 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0xef8
+.debug_aranges  0x00000000      0xfb0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x38 main.o
  .debug_aranges
                 0x00000038       0x40 RealTimeClock.o
  .debug_aranges
-                0x00000078       0x58 SdcardBreakout.o
+                0x00000078       0x48 Rj11Sensors.o
  .debug_aranges
-                0x000000d0       0xf0 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+                0x000000c0       0x58 SdcardBreakout.o
  .debug_aranges
-                0x000001c0      0x160 src/libraries/RTCLib/RTClib.o
+                0x00000118       0xf0 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
  .debug_aranges
-                0x00000320       0xa8 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00000208      0x160 src/libraries/RTCLib/RTClib.o
  .debug_aranges
-                0x000003c8       0x80 src/libraries/Wire/src/utility/twi.o
+                0x00000368       0xa8 src/libraries/SoftwareSerial/src/SoftwareSerial.o
  .debug_aranges
-                0x00000448       0xf8 src/libraries/Wire/src/Wire.o
+                0x00000410       0x80 src/libraries/Wire/src/utility/twi.o
  .debug_aranges
-                0x00000540       0x48 TempHumidPressSensor.o
+                0x00000490       0xf8 src/libraries/Wire/src/Wire.o
  .debug_aranges
-                0x00000588       0x68 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x00000588       0x48 TempHumidPressSensor.o
  .debug_aranges
-                0x000005f0       0x48 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x000005d0       0x68 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
  .debug_aranges
-                0x00000638       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                0x00000638       0x48 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
  .debug_aranges
-                0x00000668      0x100 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00000680       0x30 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
  .debug_aranges
-                0x00000768       0x48 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x000006b0      0x100 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
  .debug_aranges
-                0x000007b0       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x000007b0       0x70 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
  .debug_aranges
-                0x000007e8      0x2b8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+                0x00000820       0x48 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
  .debug_aranges
-                0x00000aa0       0xb0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+                0x00000868       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
  .debug_aranges
-                0x00000b50       0xb8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+                0x000008a0      0x2b8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
  .debug_aranges
-                0x00000c08       0xf8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+                0x00000b58       0xb0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
  .debug_aranges
-                0x00000d00      0x140 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+                0x00000c08       0xb8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
  .debug_aranges
-                0x00000e40       0x60 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+                0x00000cc0       0xf8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
  .debug_aranges
-                0x00000ea0       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+                0x00000db8      0x140 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
  .debug_aranges
-                0x00000ed8       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+                0x00000ef8       0x60 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_aranges
+                0x00000f58       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_aranges
+                0x00000f90       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x31967
+.debug_info     0x00000000    0x322f2
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc     0x1ae4 main.o
- .debug_info    0x000026a0     0x1db1 RealTimeClock.o
- .debug_info    0x00004451     0x4492 SdcardBreakout.o
- .debug_info    0x000088e3     0x228f src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_info    0x0000ab72     0x2609 src/libraries/RTCLib/RTClib.o
- .debug_info    0x0000d17b     0x2950 src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_info    0x0000facb      0x662 src/libraries/Wire/src/utility/twi.o
- .debug_info    0x0001012d     0x27b0 src/libraries/Wire/src/Wire.o
- .debug_info    0x000128dd      0xe25 TempHumidPressSensor.o
- .debug_info    0x00013702     0x205e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_info    0x00015760     0x1b74 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_info    0x000172d4      0x295 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
- .debug_info    0x00017569     0x295d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_info    0x00019ec6      0x329 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_info    0x0001a1ef      0x63a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_info    0x0001a829     0x4338 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_info    0x0001eb61     0x2d7d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_info    0x000218de     0x4f3b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_info    0x00026819     0x3204 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_info    0x00029a1d     0x503d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_info    0x0002ea5a     0x2802 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_info    0x0003125c      0x6cd C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
- .debug_info    0x00031929       0x3e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_info    0x00000bbc     0x1cde main.o
+ .debug_info    0x0000289a     0x1db1 RealTimeClock.o
+ .debug_info    0x0000464b      0x490 Rj11Sensors.o
+ .debug_info    0x00004adb     0x4492 SdcardBreakout.o
+ .debug_info    0x00008f6d     0x228f src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_info    0x0000b1fc     0x2609 src/libraries/RTCLib/RTClib.o
+ .debug_info    0x0000d805     0x2950 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_info    0x00010155      0x662 src/libraries/Wire/src/utility/twi.o
+ .debug_info    0x000107b7     0x27b0 src/libraries/Wire/src/Wire.o
+ .debug_info    0x00012f67      0xe25 TempHumidPressSensor.o
+ .debug_info    0x00013d8c     0x205e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_info    0x00015dea     0x1b74 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_info    0x0001795e      0x295 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_info    0x00017bf3     0x295d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_info    0x0001a550      0x301 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_info    0x0001a851      0x329 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_info    0x0001ab7a      0x63a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_info    0x0001b1b4     0x4338 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_info    0x0001f4ec     0x2d7d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_info    0x00022269     0x4f3b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_info    0x000271a4     0x3204 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_info    0x0002a3a8     0x503d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_info    0x0002f3e5     0x2802 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_info    0x00031be7      0x6cd C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_info    0x000322b4       0x3e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
-.debug_abbrev   0x00000000     0x7041
+.debug_abbrev   0x00000000     0x7385
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_abbrev  0x00000b1a      0x3c6 main.o
- .debug_abbrev  0x00000ee0      0x3cf RealTimeClock.o
- .debug_abbrev  0x000012af      0x716 SdcardBreakout.o
- .debug_abbrev  0x000019c5      0x61e src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_abbrev  0x00001fe3      0x57e src/libraries/RTCLib/RTClib.o
- .debug_abbrev  0x00002561      0x60b src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_abbrev  0x00002b6c      0x260 src/libraries/Wire/src/utility/twi.o
- .debug_abbrev  0x00002dcc      0x581 src/libraries/Wire/src/Wire.o
- .debug_abbrev  0x0000334d      0x372 TempHumidPressSensor.o
- .debug_abbrev  0x000036bf      0x4b7 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_abbrev  0x00003b76      0x3ce C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_abbrev  0x00003f44      0x12d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
- .debug_abbrev  0x00004071      0x47a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_abbrev  0x000044eb      0x146 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_abbrev  0x00004631      0x15a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_abbrev  0x0000478b      0x4c2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_abbrev  0x00004c4d      0x51b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_abbrev  0x00005168      0x83e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_abbrev  0x000059a6      0x635 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_abbrev  0x00005fdb      0x858 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_abbrev  0x00006833      0x561 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_abbrev  0x00006d94      0x283 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
- .debug_abbrev  0x00007017       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_abbrev  0x00000b1a      0x3fb main.o
+ .debug_abbrev  0x00000f15      0x3cf RealTimeClock.o
+ .debug_abbrev  0x000012e4      0x222 Rj11Sensors.o
+ .debug_abbrev  0x00001506      0x716 SdcardBreakout.o
+ .debug_abbrev  0x00001c1c      0x61e src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_abbrev  0x0000223a      0x57e src/libraries/RTCLib/RTClib.o
+ .debug_abbrev  0x000027b8      0x60b src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_abbrev  0x00002dc3      0x260 src/libraries/Wire/src/utility/twi.o
+ .debug_abbrev  0x00003023      0x581 src/libraries/Wire/src/Wire.o
+ .debug_abbrev  0x000035a4      0x372 TempHumidPressSensor.o
+ .debug_abbrev  0x00003916      0x4b7 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_abbrev  0x00003dcd      0x3ce C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_abbrev  0x0000419b      0x12d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_abbrev  0x000042c8      0x47a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_abbrev  0x00004742       0xed C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_abbrev  0x0000482f      0x146 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_abbrev  0x00004975      0x15a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_abbrev  0x00004acf      0x4c2 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_abbrev  0x00004f91      0x51b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_abbrev  0x000054ac      0x83e C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_abbrev  0x00005cea      0x635 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_abbrev  0x0000631f      0x858 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_abbrev  0x00006b77      0x561 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_abbrev  0x000070d8      0x283 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_abbrev  0x0000735b       0x2a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
-.debug_line     0x00000000     0x94d2
+.debug_line     0x00000000     0x99d5
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1f9 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001f9      0x281 main.o
- .debug_line    0x0000047a      0x2f5 RealTimeClock.o
- .debug_line    0x0000076f      0x40d SdcardBreakout.o
- .debug_line    0x00000b7c      0xa66 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_line    0x000015e2      0xc66 src/libraries/RTCLib/RTClib.o
- .debug_line    0x00002248      0x859 src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_line    0x00002aa1      0x515 src/libraries/Wire/src/utility/twi.o
- .debug_line    0x00002fb6      0x608 src/libraries/Wire/src/Wire.o
- .debug_line    0x000035be      0x2e4 TempHumidPressSensor.o
- .debug_line    0x000038a2      0x527 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_line    0x00003dc9      0x288 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_line    0x00004051      0x161 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
- .debug_line    0x000041b2      0x681 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_line    0x00004833      0x2cb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_line    0x00004afe      0x284 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_line    0x00004d82     0x1355 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_line    0x000060d7      0x5a9 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_line    0x00006680      0x7fb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_line    0x00006e7b      0xb41 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_line    0x000079bc     0x123a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_line    0x00008bf6      0x5b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_line    0x000091a6      0x2eb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
- .debug_line    0x00009491       0x41 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_line    0x000001f9      0x2bd main.o
+ .debug_line    0x000004b6      0x2f5 RealTimeClock.o
+ .debug_line    0x000007ab      0x1ed Rj11Sensors.o
+ .debug_line    0x00000998      0x40d SdcardBreakout.o
+ .debug_line    0x00000da5      0xa66 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_line    0x0000180b      0xc66 src/libraries/RTCLib/RTClib.o
+ .debug_line    0x00002471      0x859 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_line    0x00002cca      0x515 src/libraries/Wire/src/utility/twi.o
+ .debug_line    0x000031df      0x608 src/libraries/Wire/src/Wire.o
+ .debug_line    0x000037e7      0x2e4 TempHumidPressSensor.o
+ .debug_line    0x00003acb      0x527 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_line    0x00003ff2      0x288 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_line    0x0000427a      0x161 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_line    0x000043db      0x681 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_line    0x00004a5c      0x2da C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_line    0x00004d36      0x2cb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_line    0x00005001      0x284 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_line    0x00005285     0x1355 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_line    0x000065da      0x5a9 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_line    0x00006b83      0x7fb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_line    0x0000737e      0xb41 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_line    0x00007ebf     0x123a C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_line    0x000090f9      0x5b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_line    0x000096a9      0x2eb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_line    0x00009994       0x41 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
-.debug_frame    0x00000000     0x3614
+.debug_frame    0x00000000     0x3998
  *(.debug_frame)
  .debug_frame   0x00000000       0x54 main.o
  .debug_frame   0x00000054       0xa4 RealTimeClock.o
- .debug_frame   0x000000f8       0xf0 SdcardBreakout.o
- .debug_frame   0x000001e8      0x3e4 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_frame   0x000005cc      0x568 src/libraries/RTCLib/RTClib.o
- .debug_frame   0x00000b34      0x1d4 src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_frame   0x00000d08      0x134 src/libraries/Wire/src/utility/twi.o
- .debug_frame   0x00000e3c      0x280 src/libraries/Wire/src/Wire.o
- .debug_frame   0x000010bc       0x94 TempHumidPressSensor.o
- .debug_frame   0x00001150      0x110 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_frame   0x00001260       0xe0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_frame   0x00001340       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
- .debug_frame   0x00001394      0x3ac C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_frame   0x00001740       0xc4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_frame   0x00001804       0x7c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_frame   0x00001880      0xa60 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_frame   0x000022e0      0x1d0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_frame   0x000024b0      0x324 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_frame   0x000027d4      0x43c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_frame   0x00002c10      0x708 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_frame   0x00003318      0x27c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_frame   0x00003594       0x5c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
- .debug_frame   0x000035f0       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_frame   0x000000f8       0x80 Rj11Sensors.o
+ .debug_frame   0x00000178       0xf0 SdcardBreakout.o
+ .debug_frame   0x00000268      0x3e4 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_frame   0x0000064c      0x568 src/libraries/RTCLib/RTClib.o
+ .debug_frame   0x00000bb4      0x1d4 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_frame   0x00000d88      0x134 src/libraries/Wire/src/utility/twi.o
+ .debug_frame   0x00000ebc      0x280 src/libraries/Wire/src/Wire.o
+ .debug_frame   0x0000113c       0x94 TempHumidPressSensor.o
+ .debug_frame   0x000011d0      0x110 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_frame   0x000012e0       0xe0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_frame   0x000013c0       0x54 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_frame   0x00001414      0x3ac C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_frame   0x000017c0      0x304 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_frame   0x00001ac4       0xc4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_frame   0x00001b88       0x7c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_frame   0x00001c04      0xa60 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_frame   0x00002664      0x1d0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_frame   0x00002834      0x324 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_frame   0x00002b58      0x43c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_frame   0x00002f94      0x708 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_frame   0x0000369c      0x27c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_frame   0x00003918       0x5c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_frame   0x00003974       0x24 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
-.debug_str      0x00000000     0x7c25
+.debug_str      0x00000000     0x7e67
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6     0x1273 main.o
-                               0x135d (size before relaxing)
- .debug_str     0x00001659      0x4d0 RealTimeClock.o
+ .debug_str     0x000003e6     0x13ca main.o
+                               0x14c5 (size before relaxing)
+ .debug_str     0x000017b0      0x4c7 RealTimeClock.o
                                0x1477 (size before relaxing)
- .debug_str     0x00001b29     0x1ec1 SdcardBreakout.o
+ .debug_str     0x00001c77       0x60 Rj11Sensors.o
+                                0x414 (size before relaxing)
+ .debug_str     0x00001cd7     0x1ec1 SdcardBreakout.o
                                0x2fa6 (size before relaxing)
- .debug_str     0x000039ea      0xf65 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_str     0x00003b98      0xf55 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
                                0x1297 (size before relaxing)
- .debug_str     0x0000494f      0x56b src/libraries/RTCLib/RTClib.o
+ .debug_str     0x00004aed      0x56b src/libraries/RTCLib/RTClib.o
                                 0xe1f (size before relaxing)
- .debug_str     0x00004eba      0x6b0 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_str     0x00005058      0x6b0 src/libraries/SoftwareSerial/src/SoftwareSerial.o
                                0x193d (size before relaxing)
- .debug_str     0x0000556a      0x2c3 src/libraries/Wire/src/utility/twi.o
+ .debug_str     0x00005708      0x2c3 src/libraries/Wire/src/utility/twi.o
                                 0x3dc (size before relaxing)
- .debug_str     0x0000582d      0x407 src/libraries/Wire/src/Wire.o
+ .debug_str     0x000059cb      0x407 src/libraries/Wire/src/Wire.o
                                0x18d3 (size before relaxing)
- .debug_str     0x00005c34       0x70 TempHumidPressSensor.o
+ .debug_str     0x00005dd2       0x70 TempHumidPressSensor.o
                                 0xcfe (size before relaxing)
- .debug_str     0x00005ca4      0x475 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_str     0x00005e42      0x475 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
                                0x16f9 (size before relaxing)
- .debug_str     0x00006119       0x47 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_str     0x000062b7       0x47 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
                                0x1414 (size before relaxing)
- .debug_str     0x00006160       0x37 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_str     0x000062fe       0x37 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
                                 0x2c0 (size before relaxing)
- .debug_str     0x00006197      0x362 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_str     0x00006335      0x362 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
                                0x124e (size before relaxing)
- .debug_str     0x000064f9       0x77 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_str     0x00006697       0xa4 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+                                0x285 (size before relaxing)
+ .debug_str     0x0000673b       0x77 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
                                 0x256 (size before relaxing)
- .debug_str     0x00006570       0x58 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_str     0x000067b2       0x58 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
                                 0x2bb (size before relaxing)
- .debug_str     0x000065c8      0x3b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_str     0x0000680a      0x3b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
                                0x11a1 (size before relaxing)
- .debug_str     0x00006978      0x356 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_str     0x00006bba      0x356 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
                                0x1dca (size before relaxing)
- .debug_str     0x00006cce      0x439 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_str     0x00006f10      0x439 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
                                0x2dfe (size before relaxing)
- .debug_str     0x00007107       0xfd C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_str     0x00007349       0xfd C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
                                0x12f9 (size before relaxing)
- .debug_str     0x00007204      0x86b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_str     0x00007446      0x86b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
                                0x2757 (size before relaxing)
- .debug_str     0x00007a6f       0xfb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_str     0x00007cb1       0xfb C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
                                0x1afe (size before relaxing)
- .debug_str     0x00007b6a       0x9f C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_str     0x00007dac       0x9f C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
                                 0x6b9 (size before relaxing)
- .debug_str     0x00007c09       0x1c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_str     0x00007e4b       0x1c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
                                 0x14b (size before relaxing)
 
-.debug_loc      0x00000000    0x14b15
+.debug_loc      0x00000000    0x153c2
  *(.debug_loc)
  .debug_loc     0x00000000       0x16 main.o
  .debug_loc     0x00000016      0x247 RealTimeClock.o
- .debug_loc     0x0000025d      0x453 SdcardBreakout.o
- .debug_loc     0x000006b0     0x18af src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_loc     0x00001f5f     0x1a24 src/libraries/RTCLib/RTClib.o
- .debug_loc     0x00003983      0xca6 src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_loc     0x00004629      0x3e6 src/libraries/Wire/src/utility/twi.o
- .debug_loc     0x00004a0f      0xbe6 src/libraries/Wire/src/Wire.o
- .debug_loc     0x000055f5      0x156 TempHumidPressSensor.o
- .debug_loc     0x0000574b      0x4dc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_loc     0x00005c27      0x1b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_loc     0x00005dd7     0x1c87 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_loc     0x00007a5e      0x28d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_loc     0x00007ceb      0x56b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_loc     0x00008256     0x422d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_loc     0x0000c483      0x8ed C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_loc     0x0000cd70     0x17f1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_loc     0x0000e561     0x2097 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_loc     0x000105f8     0x332c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_loc     0x00013924     0x1001 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_loc     0x00014925      0x1f0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_loc     0x0000025d       0xb8 Rj11Sensors.o
+ .debug_loc     0x00000315      0x453 SdcardBreakout.o
+ .debug_loc     0x00000768     0x18af src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_loc     0x00002017     0x1a24 src/libraries/RTCLib/RTClib.o
+ .debug_loc     0x00003a3b      0xca6 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_loc     0x000046e1      0x3e6 src/libraries/Wire/src/utility/twi.o
+ .debug_loc     0x00004ac7      0xbe6 src/libraries/Wire/src/Wire.o
+ .debug_loc     0x000056ad      0x156 TempHumidPressSensor.o
+ .debug_loc     0x00005803      0x4dc C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_loc     0x00005cdf      0x1b0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_loc     0x00005e8f     0x1c87 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_loc     0x00007b16      0x7f5 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_loc     0x0000830b      0x28d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_loc     0x00008598      0x56b C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_loc     0x00008b03     0x422d C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_loc     0x0000cd30      0x8ed C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_loc     0x0000d61d     0x17f1 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_loc     0x0000ee0e     0x2097 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_loc     0x00010ea5     0x332c C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_loc     0x000141d1     0x1001 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_loc     0x000151d2      0x1f0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -3068,31 +3135,33 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000     0x1108
+.debug_ranges   0x00000000     0x11a0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x28 main.o
  .debug_ranges  0x00000028       0x30 RealTimeClock.o
- .debug_ranges  0x00000058       0x48 SdcardBreakout.o
- .debug_ranges  0x000000a0      0x158 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
- .debug_ranges  0x000001f8      0x180 src/libraries/RTCLib/RTClib.o
- .debug_ranges  0x00000378       0xe0 src/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_ranges  0x00000458       0x70 src/libraries/Wire/src/utility/twi.o
- .debug_ranges  0x000004c8       0xe8 src/libraries/Wire/src/Wire.o
- .debug_ranges  0x000005b0       0x38 TempHumidPressSensor.o
- .debug_ranges  0x000005e8       0x58 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
- .debug_ranges  0x00000640       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
- .debug_ranges  0x00000678       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
- .debug_ranges  0x00000698      0x120 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
- .debug_ranges  0x000007b8       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
- .debug_ranges  0x000007f0       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
- .debug_ranges  0x00000818      0x2f8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
- .debug_ranges  0x00000b10       0xa0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
- .debug_ranges  0x00000bb0       0xc0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
- .debug_ranges  0x00000c70       0xe8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
- .debug_ranges  0x00000d58      0x310 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
- .debug_ranges  0x00001068       0x68 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
- .debug_ranges  0x000010d0       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
- .debug_ranges  0x000010f8       0x10 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_ranges  0x00000058       0x38 Rj11Sensors.o
+ .debug_ranges  0x00000090       0x48 SdcardBreakout.o
+ .debug_ranges  0x000000d8      0x158 src/libraries/Adafruit_BME280_Library/Adafruit_BME280.o
+ .debug_ranges  0x00000230      0x180 src/libraries/RTCLib/RTClib.o
+ .debug_ranges  0x000003b0       0xe0 src/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_ranges  0x00000490       0x70 src/libraries/Wire/src/utility/twi.o
+ .debug_ranges  0x00000500       0xe8 src/libraries/Wire/src/Wire.o
+ .debug_ranges  0x000005e8       0x38 TempHumidPressSensor.o
+ .debug_ranges  0x00000620       0x58 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_ranges  0x00000678       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_ranges  0x000006b0       0x20 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_ranges  0x000006d0      0x120 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_ranges  0x000007f0       0x60 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WInterrupts.o)
+ .debug_ranges  0x00000850       0x38 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_ranges  0x00000888       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_ranges  0x000008b0      0x2f8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(WString.o)
+ .debug_ranges  0x00000ba8       0xa0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(File.o)
+ .debug_ranges  0x00000c48       0xc0 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SD.o)
+ .debug_ranges  0x00000d08       0xe8 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(Sd2Card.o)
+ .debug_ranges  0x00000df0      0x310 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdFile.o)
+ .debug_ranges  0x00001100       0x68 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SdVolume.o)
+ .debug_ranges  0x00001168       0x28 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(SPI.o)
+ .debug_ranges  0x00001190       0x10 C:\Users\Anders\Documents\Atmel Studio\7.0\wetterstation\wetterstation\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
 
 .debug_macro
  *(.debug_macro)

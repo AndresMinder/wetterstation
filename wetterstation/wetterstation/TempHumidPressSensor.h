@@ -11,8 +11,6 @@ struct SensorData
 class TempHumidPressSensor
 {
 //variables
-public:
-protected:
 private:
 	float temperatur, humidity, pressure, altitude;
 
@@ -22,7 +20,6 @@ public:
 	~TempHumidPressSensor();
 	void initTempHumidPressSensor();
 	SensorData getData();
-protected:
 private:
 	void setData();
 	TempHumidPressSensor( const TempHumidPressSensor &c );
