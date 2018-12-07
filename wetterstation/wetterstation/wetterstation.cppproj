@@ -21,10 +21,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <eraseonlaunchrule>1</eraseonlaunchrule>
     <AssemblyName>wetterstation</AssemblyName>
@@ -46,7 +46,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGccCpp>
-  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega2560"</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega2560"</avrgcc.common.Device>
   <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
@@ -79,8 +79,8 @@
       <Value>..\include\libraries\Wire\src</Value>
       <Value>..\include\libraries\Wire\src\utility</Value>
       <Value>..\include\libraries\RTCLib</Value>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
       <Value>..\include\libraries\SoftwareSerial\src</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -116,8 +116,8 @@
       <Value>..\include\libraries\Wire\src</Value>
       <Value>..\include\libraries\Wire\src\utility</Value>
       <Value>..\include\libraries\RTCLib</Value>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
       <Value>..\include\libraries\SoftwareSerial\src</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
@@ -135,7 +135,7 @@
   <avrgcccpp.linker.miscellaneous.LinkerFlags>-Os</avrgcccpp.linker.miscellaneous.LinkerFlags>
   <avrgcccpp.assembler.general.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcccpp.assembler.general.IncludePaths>
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
@@ -145,7 +145,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGccCpp>
-  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega2560"</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega2560"</avrgcc.common.Device>
   <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
@@ -178,8 +178,8 @@
       <Value>..\include\libraries\Wire\src</Value>
       <Value>..\include\libraries\Wire\src\utility</Value>
       <Value>..\include\libraries\RTCLib</Value>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
       <Value>..\include\libraries\SoftwareSerial\src</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -215,8 +215,8 @@
       <Value>..\include\libraries\Wire\src</Value>
       <Value>..\include\libraries\Wire\src\utility</Value>
       <Value>..\include\libraries\RTCLib</Value>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
       <Value>..\include\libraries\SoftwareSerial\src</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
@@ -234,7 +234,7 @@
   <avrgcccpp.linker.miscellaneous.LinkerFlags>-Os</avrgcccpp.linker.miscellaneous.LinkerFlags>
   <avrgcccpp.assembler.general.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.150\include</Value>
     </ListValues>
   </avrgcccpp.assembler.general.IncludePaths>
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
@@ -242,22 +242,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Anemometer.cpp">
+    <Compile Include="Calculate.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Anemometer.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CLI.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CLI.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="controller.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="controller.h">
+    <Compile Include="Calculate.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\libraries\Adafruit_BME280_Library\Adafruit_BME280.h">
@@ -281,6 +269,24 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="RealTimeClock.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="RealTimeClock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Rj11Sensors.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Rj11Sensors.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SdcardBreakout.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SdcardBreakout.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\libraries\Adafruit_BME280_Library\Adafruit_BME280.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -296,10 +302,10 @@
     <Compile Include="src\libraries\Wire\src\Wire.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="sdcard.cpp">
+    <Compile Include="TempHumidPressSensor.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="sdcard.h">
+    <Compile Include="TempHumidPressSensor.h">
       <SubType>compile</SubType>
     </Compile>
     <Content Include="readme.html">

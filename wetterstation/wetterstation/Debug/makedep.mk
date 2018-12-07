@@ -2,13 +2,15 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Anemometer.cpp
-
-CLI.cpp
-
-controller.cpp
+Calculate.cpp
 
 main.cpp
+
+RealTimeClock.cpp
+
+Rj11Sensors.cpp
+
+SdcardBreakout.cpp
 
 src\libraries\Adafruit_BME280_Library\Adafruit_BME280.cpp
 
@@ -20,5 +22,5 @@ src\libraries\Wire\src\utility\twi.c
 
 src\libraries\Wire\src\Wire.cpp
 
-sdcard.cpp
+TempHumidPressSensor.cpp
 

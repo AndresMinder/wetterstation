@@ -1,33 +1,28 @@
 ﻿#include <Arduino.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
-#include <Wire.h>
-#include <SPI.h>
-#include "sdcard.h"
-#include "Controller.h"
-#include "RTClib.h"
+#include "RealTimeClock.h"
+#include "TempHumidPressSensor.h"
+#include "SdcardBreakout.h"
+#include "Rj11Sensors.h"
+#include "Calculate.h"
 
-#define BME_CS		48
-#define SD_CS		53
-#define MISO		50
-#define MOSI		51
-#define SCK			52
-#define SEALEVELPRESSURE_HPA 1013.25
+SdcardBreakout sd;
+TempHumidPressSensor thps;
+SensorData sensordata;
+RealTimeClock realtimeclock;
+TimeStamp ts;
 
-Adafruit_BME280 bme(BME_CS, MOSI, MISO, SCK);
-sdcard SD(SD_CS, MOSI, MISO, SCK);
-RTC_DS1307 rtc;
-DateTime now;
+String myData = "datalog.txt";
 
 void setup()
-{	
-	bool status_bme, status_rtc;
+{
 	Serial.begin(9600);
-	status_bme = bme.begin();
-	status_rtc = rtc.begin();	
-}
+	while (!Serial);
+	sd.initSdcardBreakout();
+	realtimeclock.initRTC();
+	thps.initTempHumidPressSensor();
+} //setup
 
 void loop()
 {
 	
-}
+} //loop
