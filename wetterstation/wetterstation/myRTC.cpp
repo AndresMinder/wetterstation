@@ -3,9 +3,9 @@
 #include "RTClib.h"
 #include "myRTC.h"
 
-RTC_DS3231 rtc;
+// RTC_DS3231 rtc;
 
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+// char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 void initRTC()
 {
@@ -35,7 +35,7 @@ void initRTC()
 
 void timeStamp()
 {
-	DateTime now = rtc.now();
+// 	DateTime now = rtc.now();
 	
 	Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
 	Serial.print(": ");

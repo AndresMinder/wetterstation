@@ -1,19 +1,19 @@
 #ifndef __SDCARD_H__
 #define __SDCARD_H__
 
-class SDCard
+class sdcard
 {
 //variables
 private:
-	int chipSelect;
+	unsigned int chipSelect_pin, mosi_pin, miso_pin, sck_pin;
 	
 //functions
 public:
-	SDCard(unsigned int pinNumber);
-	~SDCard();
+	sdcard(unsigned int cs, unsigned int mosi, unsigned int miso, unsigned int sck);
+	~sdcard();
 	void getCardInformations();
-	void writeFileSDCard(double value2save, String filename);
+	void writeFileSDCard(float value2save, String filename);
 	void readFileSDCard(String filename);
 	void deleteFileSDCard(String filename);
-}; //test
+}; // sdcard
 #endif //__SDCARD_H__

@@ -1,29 +1,31 @@
 #include <SD.h>
 #include <SPI.h>
 #include <stdlib.h>
-#include "SDCard.h"
+#include "sdcard.h"
 
-// const int chipSelect = 53;
 File myFile;
 Sd2Card card;
 SdVolume volume;
 SdFile root;
 
 // constructor
-SDCard::SDCard(unsigned int pinNumber)
+sdcard::sdcard(unsigned int cs, unsigned int mosi, unsigned int miso, unsigned int sck)
 {	
-	chipSelect = pinNumber;
-} //test
+	chipSelect_pin = cs;
+	mosi_pin = mosi;
+	miso_pin = miso;
+	sck_pin = sck;
+} // sdcard
 
 // destructor
-SDCard::~SDCard()
+sdcard::~sdcard()
 {
 	
-} //~test
+} // ~sdcard
 
-void SDCard::getCardInformations()
+void sdcard::getCardInformations()
 {
-	if (!card.init(SPI_HALF_SPEED, chipSelect)) {
+	if (!card.init(SPI_HALF_SPEED, chipSelect_pin)) {
 		Serial.println("no card available!");
 		return;
 	}
@@ -77,13 +79,14 @@ void SDCard::getCardInformations()
 	root.ls(LS_R | LS_DATE | LS_SIZE);
 } // getCardInformations
 
-void SDCard::writeFileSDCard(double value2save, String filename)
+void sdcard::writeFileSDCard(float value2save, String filename)
 {
-	pinMode(53, OUTPUT);
-
-	if (!SD.begin(53))
+	digitalWrite(chipSelect_pin, HIGH);
+	while (digitalRead(chipSelect_pin) != HIGH){}
+	
+	if (!SD.begin(chipSelect_pin))
 	{
-		Serial.println("initialization failed!");
+		Serial.println("Error: no micro sd card found!");
 		return;
 	}
 	// open file
@@ -93,6 +96,7 @@ void SDCard::writeFileSDCard(double value2save, String filename)
 	if (myFile)
 	{
 		myFile.println(String(value2save));
+		Serial.println("Data stored!");
 		// close the file:
 		myFile.close();
 	} 
@@ -100,15 +104,19 @@ void SDCard::writeFileSDCard(double value2save, String filename)
 	{
 		// if the file didn't open, print an error:
 		Serial.println("Error opening: " + filename);
-	}
+	}	
+	digitalWrite(chipSelect_pin, LOW);
+	while (digitalRead(chipSelect_pin) != LOW){}
 } // writeFileSDCard
 
-void SDCard::readFileSDCard(String filename)
+void sdcard::readFileSDCard(String filename)
 {
-	pinMode(53, OUTPUT);
+	digitalWrite(chipSelect_pin, HIGH);
+	while (digitalRead(chipSelect_pin) != HIGH){}
 
-	if (!SD.begin(53)) {
-		Serial.println("Initialization failed!");
+	if (!SD.begin(chipSelect_pin))
+	{
+		Serial.println("Error: no micro sd card found!");
 		return;
 	}
 	//open the file for reading:
@@ -126,14 +134,18 @@ void SDCard::readFileSDCard(String filename)
 		// if the file didn't open, print an error:
 		Serial.println("Error opening" + filename);
 	}
+	digitalWrite(chipSelect_pin, LOW);
+	while (digitalRead(chipSelect_pin) != LOW){}	
 } // readFileSDCard
 
-void SDCard::deleteFileSDCard(String filename)
+void sdcard::deleteFileSDCard(String filename)
 {
-	pinMode(53, OUTPUT);
+	digitalWrite(chipSelect_pin, HIGH);
+	while (digitalRead(chipSelect_pin) != HIGH){}
 
-	if (!SD.begin(53)) {
-		Serial.println("Initialization failed!");
+	if (!SD.begin(chipSelect_pin))
+	{
+		Serial.println("Error: no micro sd card found!");
 		return;
 	}
 	// delete unwanted file if it exists
@@ -145,4 +157,6 @@ void SDCard::deleteFileSDCard(String filename)
 	{
 		Serial.println("File doesn't exist!");
 	}
+	digitalWrite(chipSelect_pin, LOW);
+	while (digitalRead(chipSelect_pin) != LOW){}
 } // deleteFileSDCard
