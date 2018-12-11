@@ -8,8 +8,6 @@ main.cpp
 
 RealTimeClock.cpp
 
-Rj11Sensors.cpp
-
 SdcardBreakout.cpp
 
 src\libraries\Adafruit_BME280_Library\Adafruit_BME280.cpp
