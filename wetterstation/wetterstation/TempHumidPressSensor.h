@@ -1,11 +1,10 @@
-#define SEALEVELPRESSURE_HPA (1013.25)
 
 #ifndef __TEMPHUMIDPRESSSENSOR_H__
 #define __TEMPHUMIDPRESSSENSOR_H__
 
-struct SensorData
+struct BME280SensorData
 {
-	float t, h, p, a;	
+	float t, h, p, a;
 };
 
 class TempHumidPressSensor
@@ -19,7 +18,7 @@ public:
 	TempHumidPressSensor();
 	~TempHumidPressSensor();
 	void initTempHumidPressSensor();
-	SensorData getData();
+	BME280SensorData getData();
 private:
 	void setData();
 	TempHumidPressSensor( const TempHumidPressSensor &c );

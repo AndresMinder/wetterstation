@@ -2,6 +2,7 @@
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
+#include "SystemDefinitions.h"
 #include "TempHumidPressSensor.h"
 
 Adafruit_BME280 bme280;
@@ -39,10 +40,10 @@ void TempHumidPressSensor::setData()
 	altitude = bme280.readAltitude(SEALEVELPRESSURE_HPA);
 } //setData
 
-SensorData TempHumidPressSensor::getData()
+BME280SensorData TempHumidPressSensor::getData()
 {
 	setData();
-	SensorData sensordata;
+	BME280SensorData sensordata;
 	
 	sensordata.t = temperatur;
 	sensordata.h = humidity;

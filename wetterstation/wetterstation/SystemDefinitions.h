@@ -1,0 +1,17 @@
+#define PIN_WINDDIRECTIONSENSOR A0
+#define SYSTEMVOLTAGE			5
+#define RESOLUTION_ADC			1023
+
+#define SD_CS					53
+
+#define SEALEVELPRESSURE_HPA	(1013.25)
+
+#define PIN_ANEMOMETER			3
+#define PIN_OMBROMETER			2
+
+#define TIME					5				// in seconds
+
+#define WINDSCALINGFACTOR		2.4
+
+#define RESOLUTION_OMBROMETER	379.4466		// ml per m^2
+#define OMBROMETERSCALINGFACTOR	1
