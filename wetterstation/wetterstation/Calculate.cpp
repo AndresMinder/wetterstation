@@ -82,6 +82,6 @@ WindData Calculate::getWindSpeed(uint32_t val)
 
 float Calculate::getRainfall(uint32_t val)
 {
-	float rainfall = (float) val * (float) RESOLUTION_OMBROMETER / ((float) TIME) * (float) OMBROMETERSCALINGFACTOR;
+	float rainfall = (float) val * (float) RESOLUTION_OMBROMETER /* ((float) TIME)*/ * (float) OMBROMETERSCALINGFACTOR;
 	return rainfall;	// rainfall in liter per m^2 in a certain timespan
 }

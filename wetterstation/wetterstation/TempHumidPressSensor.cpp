@@ -36,7 +36,7 @@ void TempHumidPressSensor::setData()
 {
 	temperatur = bme280.readTemperature();
 	humidity = bme280.readHumidity();
-	pressure = bme280.readPressure();
+	pressure = bme280.readPressure() / (float) 100.0;
 	altitude = bme280.readAltitude(SEALEVELPRESSURE_HPA);
 } //setData
 

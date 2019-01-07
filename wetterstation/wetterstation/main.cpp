@@ -44,7 +44,7 @@ void setup()
 	tsl2561.initLightIntensitySensor();
 	beginAnemometer(PIN_ANEMOMETER);
 	beginOmbrometer(PIN_OMBROMETER);
-	Serial.println("Wetterdaten:");
+	Serial.println(" ");
 } //setup
 
 void loop()
@@ -62,7 +62,7 @@ void measureWeather()
 	
 	weatherStationData.temperature = sensordata.t;
 	weatherStationData.humidity = sensordata.h;
-	weatherStationData.pressure = sensordata.h;
+	weatherStationData.pressure = sensordata.p;
  	weatherStationData.windspeed = windData.windspeed;
 	weatherStationData.windstrength = windData.windstrength;
 	weatherStationData.winddirection = getWindDirection(binaryToVoltageConverting(analogRead(PIN_WINDDIRECTIONSENSOR)));
